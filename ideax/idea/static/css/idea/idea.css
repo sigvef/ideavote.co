@@ -2,6 +2,10 @@
   background: white; 
 }
 
+.idea .upvote-widget {
+  float: left;
+}
+
 .idea .title {
   font-size: 24px;
   font-weight: normal;
@@ -11,4 +15,14 @@
 
 .idea .text {
   padding: 15px;
+}
+
+.idea .text p {
+  padding: 0 15px;
+  margin-top: 29px;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 21px;
+  line-height: 1.58;
+  letter-spacing: -0.003em;
 }
