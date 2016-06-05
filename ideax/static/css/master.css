@@ -24,6 +24,14 @@ html, body {
   color: white;
 }
 
+.banner .menu {
+  position: absolute;
+  bottom: 0;
+  right: 20px;
+  color: white;
+  margin-bottom: 15px;
+}
+
 .content {
   max-width: 768px;
   margin: 0 auto;
