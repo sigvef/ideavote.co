@@ -13,9 +13,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'css/pure-min.css' %}">
     <link rel="stylesheet" href="{% static 'css/grids-responsive-min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/master.css' %}">
+    {% block 'css' %}
+    {% endblock %}
   </head>
   <body>
-    {% block 'content' %}
-    {% endblock %}
+    <div class="content">
+      {% block 'content' %}
+      {% endblock %}
+    </div>
   </body>
 </html>

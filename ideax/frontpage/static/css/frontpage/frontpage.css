@@ -1,0 +1,49 @@
+.idea {
+  margin: 20px 0;
+  height: 100px;
+  border: 1px solid #ccc;
+  background: white;
+  box-shadow: 0px 1px 3px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.idea .upvote-count {
+  height: 100px;
+  width: 100px;
+  vertical-align: top;
+  display: inline-block;
+  text-align: center;
+  border-right: 1px solid #ccc;
+}
+
+.idea .upvote-count .number {
+  margin-top: 20px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 40px;
+  display: block;
+}
+
+.idea .upvote-count .text {
+  height: 30px;
+  line-height: 30px;
+  font-size: 12px;
+}
+
+.idea .title-wrapper {
+  display: inline-block;
+  width: calc(100% - 130px);
+  height: 80px;
+  line-height: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0px 10px 20px 10px;
+  font-size: 24px;
+}
+
+.idea .author {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  font-size: 12px;
+}

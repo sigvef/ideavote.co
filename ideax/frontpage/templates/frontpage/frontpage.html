@@ -1,20 +1,34 @@
 {% extends 'base.html' %}
 
+{% load staticfiles %}
+
+{% block 'css' %}
+    <link rel="stylesheet" href="{% static 'css/frontpage/frontpage.css' %}">
+{% endblock %}
+
 {% block 'content' %}
     <div class="banner">
     </div>
 
-
-
     <div class="idea-list">
     {% for idea in ideas %}
         <div class="idea">
-            {{ idea.upvoters.count }}
-             |
-             <a href="{{ idea.get_absolute_url }}">
-                 {{ idea.title }}
-             </a>
-             by {{ idea.author }}
+            <div class="upvote-count">
+                <span class="number">
+                    {{ idea.upvoters.count }}
+                </span>
+                <span class="text">
+                    Upvotes
+                </span>
+            </div>
+             <div class="title-wrapper">
+                 <a href="{{ idea.get_absolute_url }}">
+                     {{ idea.title }}
+                 </a>
+             </div>
+             <div class="author">
+                 by {{ idea.author }}
+             </div>
         </div>
     </div>
     {% endfor %}
