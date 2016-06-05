@@ -2,6 +2,28 @@ html, body {
   background: #efefef;
 }
 
+.banner {
+  height: 80px;
+  background: url(/static/img/banner.jpg) no-repeat center;
+  background-size: cover;
+  position: relative;
+}
+
+.banner.large-banner {
+  height: 300px;
+}
+
+.banner h1 {
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+}
+
+.banner h1 a {
+  text-decoration: none;
+  color: white;
+}
+
 .content {
   max-width: 768px;
   margin: 0 auto;

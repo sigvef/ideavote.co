@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 
 {% load staticfiles %}
+{% load upvote_widget %}
+
+{% block 'banner-class' %} large-banner {% endblock %}
 
 {% block 'css' %}
     <link rel="stylesheet" href="{% static 'css/frontpage/frontpage.css' %}">
 {% endblock %}
 
 {% block 'content' %}
-    <div class="banner">
-    </div>
-
     <div class="idea-list">
     {% for idea in ideas %}
         <div class="idea">

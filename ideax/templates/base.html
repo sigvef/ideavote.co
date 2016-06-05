@@ -18,6 +18,13 @@
     {% endblock %}
   </head>
   <body>
+      <div class="banner {% block 'banner-class' %}{% endblock %}">
+      <h1>
+        <a href="/">
+          Site Name
+        </a>
+      </h1>
+    </div>
     <div class="content">
       {% block 'content' %}
       {% endblock %}
