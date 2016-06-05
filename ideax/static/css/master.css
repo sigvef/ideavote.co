@@ -60,13 +60,28 @@ html, body {
   font-size: 12px;
 }
 
-.upvote-widget .upvoted-marker {
-  width: 30px;
-  height: 30px;
+.upvote-widget .upvote-marker {
+  width: 0px;
+  height: 0px;
   position: absolute;
-  background: orange;
-  color: white;
   text-align: center;
   line-height: 30px;
   vertical-align: middle;
+  border-left: 20px solid #ccc;
+  border-top: 20px solid #ccc;
+  border-right: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+}
+
+.upvote-widget .upvote-marker.upvoted {
+  border-left: 20px solid orange;
+  border-top: 20px solid orange;
+}
+
+.upvote-widget .upvote-marker a.star {
+  position: absolute;
+  top: -24px;
+  left: -17px;
+  color: white;
+  text-decoration: none;
 }
