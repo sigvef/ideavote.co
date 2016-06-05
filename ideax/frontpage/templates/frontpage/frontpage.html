@@ -10,17 +10,15 @@
 {% endblock %}
 
 {% block 'content' %}
+    <div class="pure-g idea-list-selector">
+        <div class="pure-u-1-3"><span class="selected">Hot</span></div>
+        <div class="pure-u-1-3"><span class="">New</span></div>
+        <div class="pure-u-1-3"><span class="">Top</span></div>
+    </div>
     <div class="idea-list">
     {% for idea in ideas %}
-        <div class="idea">
-            <div class="upvote-count">
-                <span class="number">
-                    {{ idea.upvoters.count }}
-                </span>
-                <span class="text">
-                    Upvotes
-                </span>
-            </div>
+        <div class="idea box">
+            {% upvote_widget idea %}
              <div class="title-wrapper">
                  <a href="{{ idea.get_absolute_url }}">
                      {{ idea.title }}

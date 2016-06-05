@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+{% load upvote_widget %}
+
+{% block 'css' %}
+    <link rel="stylesheet" href="{% static 'css/idea/idea.css' %}">
+{% endblock %}
+
+{% block 'content' %}
+
+  <div class="idea box">
+
+    {% upvote_widget idea %}
+
+    <h2 class="title">{{ idea.title }}</h2>
+
+    <div class="text">
+      {{ idea.text }}
+    </div>
+  </div>
+
+{% endblock %}
