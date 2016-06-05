@@ -1,6 +1,7 @@
+from django.conf import settings as django_conf_settings
 from django.db import models
 from django.utils.text import slugify
-from django.conf import settings as django_conf_settings
+import markdown
 
 
 class Idea(models.Model):
@@ -18,3 +19,6 @@ class Idea(models.Model):
 
     def get_absolute_url(self):
         return '/ideas/%s/%s' % (self.slug_id, slugify(self.title))
+
+    def get_rendered_text(self):
+        return markdown.markdown(self.text)

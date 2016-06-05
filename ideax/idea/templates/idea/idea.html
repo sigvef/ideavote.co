@@ -16,9 +16,7 @@
     <h2 class="title">{{ idea.title }}</h2>
 
     <div class="text">
-      <p>
-      {{ idea.text }}
-      </p>
+      {{ idea.get_rendered_text | safe }}
     </div>
   </div>
 
