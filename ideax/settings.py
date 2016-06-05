@@ -16,6 +16,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'ideax.frontpage',
     'ideax.idea',
 ]
 
@@ -35,7 +36,11 @@ ROOT_URLCONF = 'ideax.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            'templates',
+            'ideax/templates',  # kludge to show Django the generic tempate
+                                # directory containing things like base.html.
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

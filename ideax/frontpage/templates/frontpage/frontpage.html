@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block 'content' %}
+    frontpage!
+
+    {% for idea in ideas %}
+        {{ idea }}
+    {% endfor %}
+
+{% endblock %}
