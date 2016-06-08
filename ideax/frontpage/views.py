@@ -1,11 +1,7 @@
 from django.views.generic import View
-from django.shortcuts import render
-from ideax.idea.models import Idea
+from ideax.idea.views import HotIdeaListView
 
 
 class FrontpageView(View):
     def get(self, request):
-        ideas = Idea.objects.all()
-        return render(request, 'frontpage/frontpage.html', {
-            "ideas": ideas
-        })
+        return HotIdeaListView().get(request, page=1)

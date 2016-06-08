@@ -5,6 +5,11 @@
   font-size: 14px;
 }
 
+.idea-list-selector a {
+  text-decoration: none;
+  color: black;
+}
+
 .idea-list-selector .selected {
   font-weight: bold;
   border-bottom: 2px solid black;
