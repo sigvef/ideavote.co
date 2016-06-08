@@ -24,8 +24,13 @@
                      {{ idea.title }}
                  </a>
              </div>
-             <div class="author">
-                 by {{ idea.author }}
+             <div class="details">
+                 <div class="created-at">
+                     {{ idea.created_at }}
+                 </div>
+                 <div class="author">
+                     by {{ idea.author }}
+                 </div>
              </div>
         </div>
     {% endfor %}
