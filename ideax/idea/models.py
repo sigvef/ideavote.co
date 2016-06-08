@@ -1,5 +1,6 @@
 from django.conf import settings as django_conf_settings
 from django.db import models
+from django.utils import timezone
 from django.utils.text import slugify
 import markdown
 
@@ -13,6 +14,8 @@ class Idea(models.Model):
     upvoters = models.ManyToManyField(django_conf_settings.AUTH_USER_MODEL,
                                       related_name='upvoted_ideas',
                                       blank=True)
+    created_at = models.DateTimeField(null=True)
+    updated_at = models.DateTimeField(null=True)
 
     def __unicode__(self):
         return 'Idea[#%s, title: %s]' % (self.pk, self.title)
@@ -22,3 +25,10 @@ class Idea(models.Model):
 
     def get_rendered_text(self):
         return markdown.markdown(self.text)
+
+    def save(self, *args, **kwargs):
+        now = timezone.now()
+        if not self.id:
+            self.created_at = self.created_at or now
+        self.updated_at = self.updated_at or now
+        return super(Idea, self).save(*args, **kwargs)

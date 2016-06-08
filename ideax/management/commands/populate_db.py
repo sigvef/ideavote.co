@@ -1,7 +1,9 @@
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
+from django.utils import timezone
 from faker import Factory as FakeFactory
 from ideax.idea.models import Idea
+import datetime
 import random
 
 
@@ -21,11 +23,15 @@ class Command(BaseCommand):
 
         for i in range(100):
             print 'generating idea', i
+            created_at = timezone.now() - datetime.timedelta(
+                seconds=random.randint(0, 999999))
             idea = Idea.objects.create(
                 slug_id=random.randint(1, 9999999999),
                 title=fake.text()[:random.randint(0, 256)],
                 text=fake.text(),
-                author=random.choice(users))
+                author=random.choice(users),
+                created_at=created_at,
+                updated_at=created_at)
             shuffled = users[:]
             random.shuffle(shuffled)
             voters = shuffled[:random.randint(0, len(users))]
