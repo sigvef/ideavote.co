@@ -34,7 +34,7 @@
         </div>
     </div>
     <div class="idea-list">
-    {% for idea in ideas %}
+    {% for idea in ideas_page %}
         <div class="idea box">
             {% upvote_widget idea %}
              <div class="title-wrapper">
@@ -52,6 +52,26 @@
              </div>
         </div>
     {% endfor %}
+
+    {% if ideas_page.has_previous %}
+        <a
+            style="float: left"
+            href="/{{ ordering }}/{{ ideas_page.previous_page_number }}"
+            >
+            Previous
+        </a>
+    {% endif %}
+
+    {{ ideas_page.page_number }}
+
+    {% if ideas_page.has_next %}
+        <a
+            style="float: right"
+            href="/{{ ordering }}/{{ ideas_page.next_page_number }}"
+            >
+            Next
+        </a>
+    {% endif %}
     </div>
 
 {% endblock %}

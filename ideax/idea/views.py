@@ -27,10 +27,10 @@ class IdeaListView(View):
         return Idea.objects.all()
 
     def get(self, request, page=1):
-        paginator = Paginator(self.get_idea_queryset(), 20)
-        ideas = paginator.page(page)
+        paginator = Paginator(self.get_idea_queryset(), 15)
+        ideas_page = paginator.page(page)
         return render(request, 'idea/idealist.html', {
-            "ideas": ideas,
+            "ideas_page": ideas_page,
             "ordering": self.ordering
         })
 
