@@ -16,6 +16,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'ideax',
     'ideax.frontpage',
     'ideax.idea',
 ]
