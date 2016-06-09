@@ -29,9 +29,9 @@
                 <a href>Add comment</a>
             </div>
             <div class="reply-form">
-                <form class="pure-form">
+                <form class="pure-form" method="POST" action="/comments/">
                     <fieldset>
-                    <input type="hidden" name="idea" value="{{ idea.slug_id }}" />
+                    <input type="hidden" name="idea" value="{{ idea.id }}" />
                     <textarea name="text"></textarea>
                     <input type="submit" value="Save" class="pure-button" />
                     </fieldset>
@@ -43,7 +43,7 @@
       <div
           class="comment"
           >
-        <a href="/user/{{ node.author }}">{{ node.author }}</a>
+        <span class="author">{{ node.author }}</span>:
         {{ node.text }}
 
         <div class="reply-form-container">
@@ -53,7 +53,7 @@
             <div class="reply-form">
                 <form class="pure-form">
                     <fieldset>
-                    <input type="hidden" name="idea" value="{{ idea.slug_id }}" />
+                    <input type="hidden" name="idea" value="{{ idea.id }}" />
                     <textarea name="text"></textarea>
                     <input type="submit" value="Save" class="pure-button" />
                     </fieldset>

@@ -42,6 +42,10 @@
   letter-spacing: -0.003em;
 }
 
+.comment .author {
+  text-decoration: underline;
+}
+
 .reply-form {
   display: none;
 }

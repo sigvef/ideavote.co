@@ -6,9 +6,9 @@ from mptt.models import TreeForeignKey
 
 class Comment(MPTTModel):
     author = models.CharField(null=False, max_length=256)
-    idea = models.ForeignKey(Idea, null=True)
+    idea = models.ForeignKey(Idea, null=True, blank=True)
     parent = TreeForeignKey(
-        'self', related_name='children', null=True, db_index=True)
+        'self', related_name='children', null=True, db_index=True, blank=True)
     text = models.TextField(blank=True)
 
     def get_reply_form(self):
