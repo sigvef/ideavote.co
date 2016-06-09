@@ -12,9 +12,13 @@
 
   <div class="idea box">
 
-    {% upvote_widget idea request.user %}
+    <div class="idea-header">
+        <div class="upvote-widget-wrapper">
+            {% upvote_widget idea request.user %}
+        </div>
 
-    <h2 class="title">{{ idea.title }}</h2>
+        <h2 class="title">{{ idea.title }}</h2>
+    </div>
 
     <div class="text">
       {{ idea.get_rendered_text | safe }}

@@ -17,17 +17,16 @@
 
 .idea {
   margin: 20px 0;
-  height: 100px;
+  position: relative;
+  min-height: 100px;
 }
 
 .idea .title-wrapper {
   display: inline-block;
   width: calc(100% - 130px);
-  height: 80px;
-  line-height: 80px;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin: 0px 10px 20px 10px;
+  margin: 15px 10px 20px 100px;
   font-size: 24px;
 }
 
@@ -37,4 +36,12 @@
   right: 10px;
   font-size: 12px;
   color: #ccc;
+}
+
+.upvote-widget-wrapper {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
 }
