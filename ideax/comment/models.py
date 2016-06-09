@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from ideax.idea.models import Idea
 from mptt.models import MPTTModel
 from mptt.models import TreeForeignKey
@@ -10,6 +11,8 @@ class Comment(MPTTModel):
     parent = TreeForeignKey(
         'self', related_name='children', null=True, db_index=True, blank=True)
     text = models.TextField(blank=True)
+    created_at = models.DateTimeField(null=True)
+    updated_at = models.DateTimeField(null=True)
 
     def get_reply_form(self):
         from ideax.comment.forms import CommentForm
@@ -21,3 +24,10 @@ class Comment(MPTTModel):
 
     def __unicode__(self):
         return 'Comment[#%s]' % self.id
+
+    def save(self, *args, **kwargs):
+        now = timezone.now()
+        if not self.id:
+            self.created_at = self.created_at or now
+        self.updated_at = self.updated_at or now
+        return super(Idea, self).save(*args, **kwargs)
