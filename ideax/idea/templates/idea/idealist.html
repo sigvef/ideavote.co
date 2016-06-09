@@ -43,6 +43,9 @@
                  </a>
              </div>
              <div class="details">
+                 <span class="comment-count">
+                 {{ idea.comment_count }} comment{{ idea.comment_count | pluralize }}.
+                 </span>
                  <span class="created-at">
                      {{ idea.created_at }}
                  </span>

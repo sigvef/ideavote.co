@@ -14,6 +14,7 @@ class Idea(models.Model):
     upvoters = models.ManyToManyField(django_conf_settings.AUTH_USER_MODEL,
                                       related_name='upvoted_ideas',
                                       blank=True)
+    comment_count = models.IntegerField(default=0)
     created_at = models.DateTimeField(null=True)
     updated_at = models.DateTimeField(null=True)
 

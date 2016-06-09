@@ -16,14 +16,14 @@ class Command(BaseCommand):
 
         users = []
 
-        print 'generating 1000 users'
-        for _ in range(1000):
+        print 'generating 100 users'
+        for _ in range(100):
             name = fake.name()
             user = get_user_model().objects.create_user(name)
             users.append(user)
 
         ideas = []
-        for i in range(10):
+        for i in range(30):
             print 'generating idea', i
             created_at = timezone.now() - datetime.timedelta(
                 seconds=random.randint(0, 999999))
@@ -42,6 +42,7 @@ class Command(BaseCommand):
 
         print 'generating 1000 comments'
         comments = []
+        first = True
         for i in range(1000):
             if i % 100 == 0:
                 print 'comment %s...' % i
@@ -50,9 +51,10 @@ class Command(BaseCommand):
             comment = Comment.objects.create(
                 author=author.username,
                 text=text)
-            if len(comments) == 0 or random.random() < 0.1:
+            if first or random.random() < 0.1:
                 comment.idea = random.choice(ideas)
                 comment.save()
+                first = False
             else:
                 parent = random.choice(comments)
                 comment.parent = parent
