@@ -4,7 +4,7 @@ html, body {
 
 .banner {
   height: 80px;
-  background: url(/static/img/banner.jpg) no-repeat center;
+  background: #888 no-repeat center;
   background-size: cover;
   position: relative;
 }

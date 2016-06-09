@@ -11,7 +11,8 @@ class Idea(models.Model):
     title = models.CharField(max_length=256, blank=True)
     text = models.TextField(blank=True)
     author = models.ForeignKey(django_conf_settings.AUTH_USER_MODEL,
-                               related_name='authored_ideas')
+                               related_name='authored_ideas',
+                               null=True)
     upvoters = models.ManyToManyField(django_conf_settings.AUTH_USER_MODEL,
                                       related_name='upvoted_ideas',
                                       blank=True)

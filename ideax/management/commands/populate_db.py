@@ -1,9 +1,10 @@
 from django.contrib.auth import get_user_model
+from django.contrib.sites.models import Site
 from django.core.management.base import BaseCommand
 from django.utils import timezone
 from faker import Factory as FakeFactory
-from ideax.idea.models import Idea
 from ideax.comment.models import Comment
+from ideax.idea.models import Idea
 import datetime
 import random
 
@@ -13,6 +14,9 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         fake = FakeFactory.create()
+
+        site = Site(name='localhost', domain='localhost')
+        site.save()
 
         users = []
 
@@ -32,7 +36,7 @@ class Command(BaseCommand):
                 title=fake.text()[:random.randint(0, 256)],
                 text=fake.text(),
                 author=random.choice(users),
-                site_id=1,
+                site_id=site.id,
                 created_at=created_at,
                 updated_at=created_at)
             ideas.append(idea)

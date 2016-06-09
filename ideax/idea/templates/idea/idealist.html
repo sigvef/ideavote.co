@@ -11,6 +11,26 @@
 {% endblock %}
 
 {% block content %}
+
+    <div class="idea-input">
+        <form
+            class="pure-form"
+            method="POST"
+            action="/ideas/"
+            >
+            <fieldset>
+                <label>
+                    Share your idea!
+                <input
+                    name="title"
+                    type="text"
+                    placeholder="It would be awesome if..."
+                    />
+                </label>
+            </fieldset>
+        </form>
+    </div>
+
     <div class="pure-g idea-list-selector">
         <div class="pure-u-1-3">
             <a href="/" class="

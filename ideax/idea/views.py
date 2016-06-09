@@ -1,4 +1,6 @@
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.db import transaction
 from django.db.models import Count
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
@@ -7,14 +9,17 @@ from django.shortcuts import render
 from django.utils import timezone
 from django.views.generic import View
 from ideax.comment.models import Comment
+from ideax.idea.forms import IdeaForm
 from ideax.idea.models import Idea
 from ideax.idea.ranking_functions import hot
 from ideax.shortcuts import get_current_site
+import random
 
 
 class IdeaView(View):
     def get(self, request, slug_id=None):
         idea = get_object_or_404(Idea, slug_id=slug_id)
+        print idea.get_absolute_url(), request.path
         if request.path != idea.get_absolute_url():
             return HttpResponseRedirect(idea.get_absolute_url())
         comments = Comment.objects.filter(idea__id=idea.id)
@@ -72,3 +77,18 @@ class TopIdeaListView(IdeaListView):
     def get_idea_queryset(self, request):
         return Idea.objects.filter(site=get_current_site(request)).annotate(
             score=Count('upvoters')).order_by('-score')
+
+
+@login_required
+@transaction.atomic
+def post_idea(request):
+    if request.method == 'POST':
+        form = IdeaForm(data=request.POST)
+        if form.is_valid():
+            idea = form.save()
+            idea.author = request.user
+            idea.site = get_current_site(request)
+            idea.slug_id = random.randint(0, 99999999)
+            idea.save()
+            return HttpResponseRedirect(idea.get_absolute_url())
+        return HttpResponse(form.errors)
