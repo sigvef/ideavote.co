@@ -71,3 +71,11 @@
   font-size: 14px;
   color: #222;
 }
+
+.idea .details {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  font-size: 12px;
+  color: #ccc;
+}

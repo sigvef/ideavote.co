@@ -2,6 +2,7 @@
 
 {% load staticfiles %}
 {% load upvote_widget %}
+{% load humanize %}
 
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/idea/idea.css' %}">
@@ -18,6 +19,18 @@
     <div class="text">
       {{ idea.get_rendered_text | safe }}
     </div>
+
+     <div class="details">
+         <span class="created-at">
+             {{ idea.created_at | naturaltime }}
+         </span>
+         <span class="author">
+             by {{ idea.author }}.
+         </span>
+         <span class="comment-count">
+         {{ idea.comment_count }} comment{{ idea.comment_count | pluralize }}.
+         </span>
+     </div>
   </div>
 
   {% load mptt_tags %}

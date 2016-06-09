@@ -61,3 +61,6 @@ class Command(BaseCommand):
                 comment.idea = parent.idea
                 comment.save()
             comments.append(comment)
+            idea = comment.idea
+            idea.comment_count = idea.comment_count + 1
+            idea.save()
