@@ -26,7 +26,11 @@
     <script src="{% static 'js/comments.js' %}"></script>
   </head>
   <body>
-      <div class="banner {% block banner_class %}{% endblock %}">
+      <div
+          class="banner {% block banner_class %}{% endblock %}"
+          style="background-image:
+                 url('{{ request.site_settings.banner_image.url }}')"
+          >
       <h1>
         <a href="/">
           {{ request.site.name }}

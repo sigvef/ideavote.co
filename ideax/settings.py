@@ -2,6 +2,9 @@ import os
 
 DEBUG = True
 
+MEDIA_ROOT = 'media'
+MEDIA_URL = '/media/'
+
 APPEND_SLASH = False
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -15,6 +18,7 @@ INSTALLED_APPS = [
     'ideax.comment',
     'ideax.frontpage',
     'ideax.idea',
+    'ideax.site',
 
     'mptt',
 
