@@ -51,9 +51,9 @@
                 <a href>Reply</a>
             </div>
             <div class="reply-form">
-                <form class="pure-form">
+                <form class="pure-form" method="POST" action="/comments/">
                     <fieldset>
-                    <input type="hidden" name="idea" value="{{ idea.id }}" />
+                    <input type="hidden" name="parent" value="{{ node.id }}" />
                     <textarea name="text"></textarea>
                     <input type="submit" value="Save" class="pure-button" />
                     </fieldset>

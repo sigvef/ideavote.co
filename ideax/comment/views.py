@@ -9,6 +9,8 @@ def post_comment(request):
     form = CommentForm(data=request.POST)
     if form.is_valid():
         comment = form.save()
+        if comment.parent:
+            comment.idea = comment.parent.idea
         comment.author = request.user.username
         comment.save()
         return HttpResponseRedirect(comment.idea.get_absolute_url())
