@@ -11,7 +11,6 @@
   font-size: 24px;
   font-weight: normal;
   padding: 15px;
-  text-decoration: underline;
 }
 
 .idea .text {
@@ -34,11 +33,29 @@
 .comment {
   margin-left: 15px;
   border-left: 1px solid rgba(0,0,0,0.2);
-  padding: 0 15px;
+  padding: 0 0 0 15px;
   margin-top: 29px;
   font-weight: 400;
   font-style: normal;
   font-size: 21px;
   line-height: 1.58;
   letter-spacing: -0.003em;
+}
+
+.reply-form {
+  display: none;
+}
+
+.reply-form textarea {
+  width: 100%;
+}
+
+.reply-form-container .pure-button {
+  float: right;
+  margin-top: 15px;
+}
+
+.reply-form-container .reply-button-container a {
+  font-size: 14px;
+  color: #222;
 }

@@ -23,6 +23,22 @@
   {% load mptt_tags %}
 
   <div class="comment-container">
+
+        <div class="reply-form-container">
+            <div class="reply-button-container" style="margin-left: 15px">
+                <a href>Add comment</a>
+            </div>
+            <div class="reply-form">
+                <form class="pure-form">
+                    <fieldset>
+                    <input type="hidden" name="idea" value="{{ idea.slug_id }}" />
+                    <textarea name="text"></textarea>
+                    <input type="submit" value="Save" class="pure-button" />
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
       {% recursetree comments %}
       <div
           class="comment"
@@ -30,10 +46,25 @@
         <a href="/user/{{ node.author }}">{{ node.author }}</a>
         {{ node.text }}
 
+        <div class="reply-form-container">
+            <div class="reply-button-container">
+                <a href>Reply</a>
+            </div>
+            <div class="reply-form">
+                <form class="pure-form">
+                    <fieldset>
+                    <input type="hidden" name="idea" value="{{ idea.slug_id }}" />
+                    <textarea name="text"></textarea>
+                    <input type="submit" value="Save" class="pure-button" />
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
         {% if not node.is_leaf_node %}
           {{ children }}
         {% endif %}
-        </div>
+      </div>
       {% endrecursetree %}
   </div>
 
