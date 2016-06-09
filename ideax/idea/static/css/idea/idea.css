@@ -45,6 +45,8 @@
 
 .comment .author {
   text-decoration: underline;
+  float: left;
+  margin-right: 5px;
 }
 
 .comment a.collapse-thread {
@@ -72,10 +74,18 @@
   color: #222;
 }
 
-.idea .details {
+.reply-button-container {
+  position: relative;
+}
+
+.details {
   position: absolute;
   bottom: 5px;
   right: 10px;
   font-size: 12px;
   color: #ccc;
+}
+
+.comment .text {
+  position: relative;
 }

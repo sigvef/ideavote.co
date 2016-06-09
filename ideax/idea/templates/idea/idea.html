@@ -62,12 +62,14 @@
                     <span class="author">{{ node.author }}</span>
                 </div>
                 <div class="collapsible">
-                <span class="author">{{ node.author }}</span>:
+                <span class="author">{{ node.author }}:</span>
                 {{ node.text }}
-
                 <div class="reply-form-container">
                     <div class="reply-button-container">
                         <a href>Reply</a>
+                         <div class="details">
+                             {{ idea.created_at | naturaltime }}
+                         </div>
                     </div>
                     <div class="reply-form">
                         <form class="pure-form" method="POST" action="/comments/">
