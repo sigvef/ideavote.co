@@ -43,27 +43,35 @@
       <div
           class="comment"
           >
-        <span class="author">{{ node.author }}</span>:
-        {{ node.text }}
+        <div class="collapsible-container">
+            <a href class="collapse-thread">[-]</a>
+                <div class="collapsible" style="display: none">
+                    <span class="author">{{ node.author }}</span>
+                </div>
+                <div class="collapsible">
+                <span class="author">{{ node.author }}</span>:
+                {{ node.text }}
 
-        <div class="reply-form-container">
-            <div class="reply-button-container">
-                <a href>Reply</a>
-            </div>
-            <div class="reply-form">
-                <form class="pure-form" method="POST" action="/comments/">
-                    <fieldset>
-                    <input type="hidden" name="parent" value="{{ node.id }}" />
-                    <textarea name="text"></textarea>
-                    <input type="submit" value="Save" class="pure-button" />
-                    </fieldset>
-                </form>
+                <div class="reply-form-container">
+                    <div class="reply-button-container">
+                        <a href>Reply</a>
+                    </div>
+                    <div class="reply-form">
+                        <form class="pure-form" method="POST" action="/comments/">
+                            <fieldset>
+                            <input type="hidden" name="parent" value="{{ node.id }}" />
+                            <textarea name="text"></textarea>
+                            <input type="submit" value="Save" class="pure-button" />
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+
+                {% if not node.is_leaf_node %}
+                  {{ children }}
+                {% endif %}
             </div>
         </div>
-
-        {% if not node.is_leaf_node %}
-          {{ children }}
-        {% endif %}
       </div>
       {% endrecursetree %}
   </div>
