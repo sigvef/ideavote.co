@@ -1,6 +1,16 @@
 <div class="upvote-widget">
-  <div class="upvote-marker">
-    <a href class="star">☆</a>
+  <div
+    class="
+      upvote-marker
+      {% if upvoted %} upvoted {% endif %}
+    ">
+    <a
+      href
+      data-idea-id="{{ idea.slug_id }}"
+      class="star"
+      >
+      ☆
+    </a>
   </div>
   <span class="number">
       {{ idea.upvoters.count }}

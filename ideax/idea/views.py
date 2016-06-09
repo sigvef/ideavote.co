@@ -1,7 +1,8 @@
 from django.core.paginator import Paginator
+from django.db.models import Count
+from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
-from django.db.models import Count
 from django.shortcuts import render
 from django.utils import timezone
 from django.views.generic import View
@@ -15,8 +16,17 @@ class IdeaView(View):
         if request.path != idea.get_absolute_url():
             return HttpResponseRedirect(idea.get_absolute_url())
         return render(request, 'idea/idea.html', {
-            "idea": idea
+            "idea": idea,
         })
+
+    def post(self, request, slug_id=None):
+        idea = get_object_or_404(Idea, slug_id=slug_id)
+        if idea.upvoters.filter(id=request.user.id).exists():
+            idea.upvoters.remove(request.user)
+            return HttpResponse('Unstarred')
+        else:
+            idea.upvoters.add(request.user)
+            return HttpResponse('Starred')
 
 
 class IdeaListView(View):
@@ -31,7 +41,7 @@ class IdeaListView(View):
         ideas_page = paginator.page(page)
         return render(request, 'idea/idealist.html', {
             "ideas_page": ideas_page,
-            "ordering": self.ordering
+            "ordering": self.ordering,
         })
 
 

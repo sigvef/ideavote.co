@@ -36,7 +36,7 @@
     <div class="idea-list">
     {% for idea in ideas_page %}
         <div class="idea box">
-            {% upvote_widget idea %}
+            {% upvote_widget idea request.user %}
              <div class="title-wrapper">
                  <a href="{{ idea.get_absolute_url }}">
                      {{ idea.title }}
