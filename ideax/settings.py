@@ -11,16 +11,17 @@ SECRET_KEY = 'llk5is+*3p4!9x)nioo#dj2y6ndg-xca8ndzu*b5@hkd-k+irn'
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
+    'ideax',
+    'ideax.frontpage',
+    'ideax.idea',
+
     'django.contrib.admin',
+    'registration',  # should be immediately above django.contrib.auth
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'ideax',
-    'ideax.frontpage',
-    'ideax.idea',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -41,8 +42,6 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             'templates',
-            'ideax/templates',  # kludge to show Django the generic tempate
-                                # directory containing things like base.html.
             ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -89,9 +88,9 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
+USE_I18N = False
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
