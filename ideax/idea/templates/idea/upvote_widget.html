@@ -12,10 +12,12 @@
       ☆
     </a>
   </div>
-  <span class="number">
-      {{ idea.upvoters.count }}
-  </span>
-  <span class="text">
-    Star{{ idea.upvoters.count | pluralize }}
-  </span>
+  <div>
+    <span class="number">
+        {{ idea.upvoters.count }}
+    </span>
+    <span class="text">
+      Star{{ idea.upvoters.count | pluralize }}
+    </span>
+  </div>
 </div>

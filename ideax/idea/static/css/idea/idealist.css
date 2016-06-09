@@ -19,6 +19,7 @@
   margin: 20px 0;
   position: relative;
   min-height: 100px;
+  display: flex;
 }
 
 .idea .title-wrapper {
@@ -28,6 +29,10 @@
   text-overflow: ellipsis;
   margin: 15px 10px 20px 100px;
   font-size: 24px;
+}
+
+.idea .title-wrapper a {
+ text-decoration: none;
 }
 
 .idea .details {
