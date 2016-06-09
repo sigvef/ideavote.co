@@ -30,4 +30,4 @@ class Comment(MPTTModel):
         if not self.id:
             self.created_at = self.created_at or now
         self.updated_at = self.updated_at or now
-        return super(Idea, self).save(*args, **kwargs)
+        return super(Comment, self).save(*args, **kwargs)

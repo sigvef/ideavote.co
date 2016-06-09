@@ -1,4 +1,5 @@
 from django.conf import settings as django_conf_settings
+from django.contrib.sites.models import Site
 from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
@@ -17,6 +18,7 @@ class Idea(models.Model):
     comment_count = models.IntegerField(default=0)
     created_at = models.DateTimeField(null=True)
     updated_at = models.DateTimeField(null=True)
+    site = models.ForeignKey(Site, null=True)
 
     def __unicode__(self):
         return 'Idea[#%s, title: %s]' % (self.pk, self.title)

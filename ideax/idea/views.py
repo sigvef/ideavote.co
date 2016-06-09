@@ -9,6 +9,7 @@ from django.views.generic import View
 from ideax.comment.models import Comment
 from ideax.idea.models import Idea
 from ideax.idea.ranking_functions import hot
+from ideax.shortcuts import get_current_site
 
 
 class IdeaView(View):
@@ -36,11 +37,11 @@ class IdeaListView(View):
 
     ordering = ''
 
-    def get_idea_queryset(self):
-        return Idea.objects.all()
+    def get_idea_queryset(self, request):
+        return Idea.objects.filter(site=get_current_site(request))
 
     def get(self, request, page=1):
-        paginator = Paginator(self.get_idea_queryset(), 15)
+        paginator = Paginator(self.get_idea_queryset(request), 15)
         ideas_page = paginator.page(page)
         return render(request, 'idea/idealist.html', {
             "ideas_page": ideas_page,
@@ -51,21 +52,23 @@ class IdeaListView(View):
 class HotIdeaListView(IdeaListView):
     ordering = 'hot'
 
-    def get_idea_queryset(self):
+    def get_idea_queryset(self, request):
         now = timezone.now()
-        return sorted(Idea.objects.all(), key=lambda idea: -hot(idea, now))
+        return sorted(Idea.objects.filter(site=get_current_site(request)),
+                      key=lambda idea: -hot(idea, now))
 
 
 class NewIdeaListView(IdeaListView):
     ordering = 'new'
 
-    def get_idea_queryset(self):
-        return Idea.objects.all().order_by('-created_at')
+    def get_idea_queryset(self, request):
+        return Idea.objects.filter(
+            site=get_current_site(request)).order_by('-created_at')
 
 
 class TopIdeaListView(IdeaListView):
     ordering = 'top'
 
-    def get_idea_queryset(self):
-        return Idea.objects.all().annotate(
+    def get_idea_queryset(self, request):
+        return Idea.objects.filter(site=get_current_site(request)).annotate(
             score=Count('upvoters')).order_by('-score')

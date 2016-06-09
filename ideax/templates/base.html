@@ -5,7 +5,7 @@
   <head>
     <title>
       {% block title %}
-        Untitled  
+          {{ request.site.display_name }}
       {% endblock %}
       :: IdeaX
     </title>
@@ -29,7 +29,7 @@
       <div class="banner {% block banner_class %}{% endblock %}">
       <h1>
         <a href="/">
-          Site Name
+          {{ request.site.name }}
         </a>
       </h1>
 

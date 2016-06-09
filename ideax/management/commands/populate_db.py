@@ -32,6 +32,7 @@ class Command(BaseCommand):
                 title=fake.text()[:random.randint(0, 256)],
                 text=fake.text(),
                 author=random.choice(users),
+                site_id=1,
                 created_at=created_at,
                 updated_at=created_at)
             ideas.append(idea)
