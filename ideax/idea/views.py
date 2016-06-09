@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from django.utils import timezone
 from django.views.generic import View
+from ideax.comment.models import Comment
 from ideax.idea.models import Idea
 from ideax.idea.ranking_functions import hot
 
@@ -15,8 +16,10 @@ class IdeaView(View):
         idea = get_object_or_404(Idea, slug_id=slug_id)
         if request.path != idea.get_absolute_url():
             return HttpResponseRedirect(idea.get_absolute_url())
+        comments = Comment.objects.filter(idea__id=idea.id)
         return render(request, 'idea/idea.html', {
             "idea": idea,
+            'comments': comments,
         })
 
     def post(self, request, slug_id=None):

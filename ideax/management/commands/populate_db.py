@@ -3,6 +3,7 @@ from django.core.management.base import BaseCommand
 from django.utils import timezone
 from faker import Factory as FakeFactory
 from ideax.idea.models import Idea
+from ideax.comment.models import Comment
 import datetime
 import random
 
@@ -21,7 +22,8 @@ class Command(BaseCommand):
             user = get_user_model().objects.create_user(name)
             users.append(user)
 
-        for i in range(100):
+        ideas = []
+        for i in range(10):
             print 'generating idea', i
             created_at = timezone.now() - datetime.timedelta(
                 seconds=random.randint(0, 999999))
@@ -32,7 +34,28 @@ class Command(BaseCommand):
                 author=random.choice(users),
                 created_at=created_at,
                 updated_at=created_at)
+            ideas.append(idea)
             shuffled = users[:]
             random.shuffle(shuffled)
             voters = shuffled[:random.randint(0, len(users))]
             idea.upvoters.add(*voters)
+
+        print 'generating 1000 comments'
+        comments = []
+        for i in range(1000):
+            if i % 100 == 0:
+                print 'comment %s...' % i
+            author = random.choice(users)
+            text = fake.text()
+            comment = Comment.objects.create(
+                author=author.username,
+                text=text)
+            if len(comments) == 0 or random.random() < 0.1:
+                comment.idea = random.choice(ideas)
+                comment.save()
+            else:
+                parent = random.choice(comments)
+                comment.parent = parent
+                comment.idea = parent.idea
+                comment.save()
+            comments.append(comment)

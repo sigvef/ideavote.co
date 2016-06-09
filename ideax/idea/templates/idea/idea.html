@@ -20,4 +20,21 @@
     </div>
   </div>
 
+  {% load mptt_tags %}
+
+  <div class="comment-container">
+      {% recursetree comments %}
+      <div
+          class="comment"
+          >
+        <a href="/user/{{ node.author }}">{{ node.author }}</a>
+        {{ node.text }}
+
+        {% if not node.is_leaf_node %}
+          {{ children }}
+        {% endif %}
+        </div>
+      {% endrecursetree %}
+  </div>
+
 {% endblock %}

@@ -12,8 +12,11 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'ideax',
+    'ideax.comment',
     'ideax.frontpage',
     'ideax.idea',
+
+    'mptt',
 
     'django.contrib.admin',
     'registration',  # should be immediately above django.contrib.auth

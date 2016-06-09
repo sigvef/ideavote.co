@@ -27,3 +27,18 @@
   line-height: 1.58;
   letter-spacing: -0.003em;
 }
+
+.comment-container {
+}
+
+.comment {
+  margin-left: 15px;
+  border-left: 1px solid rgba(0,0,0,0.2);
+  padding: 0 15px;
+  margin-top: 29px;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 21px;
+  line-height: 1.58;
+  letter-spacing: -0.003em;
+}
