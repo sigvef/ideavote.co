@@ -102,3 +102,17 @@ html, body {
   color: white;
   text-decoration: none;
 }
+
+.tags {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.tag {
+  border: 1px solid #ccc;
+  font-size: 12px;
+  color: #ccc;
+  padding: 2px 6px;
+  border-radius: 2px;
+  display: inline-block;
+}

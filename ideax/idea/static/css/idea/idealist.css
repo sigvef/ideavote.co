@@ -36,7 +36,7 @@
   width: calc(100% - 130px);
   overflow: hidden;
   text-overflow: ellipsis;
-  margin: 15px 10px 20px 100px;
+  margin: 15px 10px 30px 100px;
   font-size: 24px;
 }
 

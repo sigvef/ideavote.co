@@ -66,6 +66,11 @@
                  </a>
              </div>
              <div class="details">
+                 <div class="tags">
+                     {% for tag in idea.tags.all %}
+                         <div class="tag">{{ tag }}</div>
+                     {% endfor %}
+                 </div>
                  <span class="created-at">
                      {{ idea.created_at | naturaltime }}
                  </span>
