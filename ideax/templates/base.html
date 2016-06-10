@@ -40,7 +40,11 @@
 
           <div class="menu">
             {% if request.user.is_authenticated %}
-                <a class="username">
+                <a
+                    href="/users/{{ request.user.username }}"
+                    class="username pure-button"
+                    style="background: transparent; color: white"
+                    >
                     {{ request.user }}
                 </a>
                 <a href="/accounts/logout/?next=/" class="pure-button">

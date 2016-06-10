@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'ideax.frontpage',
     'ideax.idea',
     'ideax.site',
+    'ideax.user',
 
     'mptt',
     'taggit',
