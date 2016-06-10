@@ -26,38 +26,45 @@
     <script src="{% static 'js/comments.js' %}"></script>
   </head>
   <body>
-      <div
-          class="banner {% block banner_class %}{% endblock %}"
-          style="background-image:
-                 url('{{ request.site_settings.banner_image.url }}')"
-          >
-      <h1>
-        <a href="/">
-          {{ request.site.name }}
-        </a>
-      </h1>
+      <div class="sticky-footer-page-wrapper">
+          <div
+              class="banner {% block banner_class %}{% endblock %}"
+              style="background-image:
+                     url('{{ request.site_settings.banner_image.url }}')"
+              >
+          <h1>
+            <a href="/">
+              {{ request.site.name }}
+            </a>
+          </h1>
 
-      <div class="menu">
-        {% if request.user.is_authenticated %}
-            <a class="username">
-                {{ request.user }}
-            </a>
-            <a href="/accounts/logout/?next=/" class="pure-button">
-              Log out
-            </a>
-        {% else %}
-            <a href="/accounts/register/" class="pure-button">
-              Register
-            </a>
-            <a href="/accounts/login/" class="pure-button">
-              Log in
-            </a>
-        {% endif %}
-      </div>
+          <div class="menu">
+            {% if request.user.is_authenticated %}
+                <a class="username">
+                    {{ request.user }}
+                </a>
+                <a href="/accounts/logout/?next=/" class="pure-button">
+                  Log out
+                </a>
+            {% else %}
+                <a href="/accounts/register/" class="pure-button">
+                  Register
+                </a>
+                <a href="/accounts/login/" class="pure-button">
+                  Log in
+                </a>
+            {% endif %}
+          </div>
+        </div>
+        <div class="content">
+          {% block content %}
+          {% endblock %}
+        </div>
     </div>
-    <div class="content">
-      {% block content %}
-      {% endblock %}
+
+    <div class="footer">
+      <span class="copyright-symbol">&copy;</span>
+      <a href="https://ideavote.co">ideavote.co</a>
     </div>
   </body>
 </html>

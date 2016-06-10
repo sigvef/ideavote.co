@@ -1,5 +1,6 @@
 html, body {
   background: #efefef;
+  height: 100%;
 }
 
 .banner {
@@ -115,4 +116,44 @@ html, body {
   padding: 2px 6px;
   border-radius: 2px;
   display: inline-block;
+}
+
+.sticky-footer-page-wrapper {
+  min-height: 100%;
+  margin-bottom: -83px;
+}
+
+.sticky-footer-page-wrapper:after {
+  content: "";
+  display: block;
+  height: 83px;
+}
+
+.footer {
+  height: 50px;
+  background: white;
+  color: #888;
+  clear: both;
+  margin-top: 30px;
+  border-top: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer a {
+  color: #888;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: black;
+  text-decoration: underline;
+}
+
+.footer .copyright-symbol {
+  display: inline-block;
+  margin-right: 5px;
+  margin-top: 1px;
+  font-size: 18px;
 }
