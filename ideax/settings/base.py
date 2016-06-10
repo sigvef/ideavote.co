@@ -11,7 +11,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = 'llk5is+*3p4!9x)nioo#dj2y6ndg-xca8ndzu*b5@hkd-k+irn'
 
-ALLOWED_HOSTS = ['ideavote.co', '*.ideavote.co']
+ALLOWED_HOSTS = ['ideavote.co', '.ideavote.co']
 
 INSTALLED_APPS = [
     'ideax',
