@@ -111,4 +111,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'ideax/static'),
 ]
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 TAGGIT_CASE_INSENSITIVE = True
