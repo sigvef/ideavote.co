@@ -4,6 +4,8 @@ DEBUG = True
 
 APPEND_SLASH = False
 
+SESSION_COOKIE_DOMAIN = 'localhost'
+
 BASE_DIR = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
