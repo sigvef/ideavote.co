@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+
+    <form
+        class="pure-form pure-form-stacked wide-form login-form"
+        method="POST"
+        action=""
+        >
+
+        {% if form.non_field_errors %}
+            <div class="form-error">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        <fieldset>
+            {% csrf_token %}
+            <div class="{%if form.username.errors %} form-error {% endif %}">
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    required
+                    {% if form.username.value %}
+                        value="{{ form.username.value }}"
+                    {% endif %}
+                    />
+                {{ form.username.errors }}
+            </div>
+            <div class="{%if form.password.errors %} form-error {% endif %}">
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    required
+                    {% if form.password.value %}
+                        value="{{ form.password.value }}"
+                    {% endif %}
+                    />
+                {{ form.password.errors }}
+            </div>
+            <input
+                type="submit"
+                class="pure-button pure-button-primary"
+                value="Log in"
+                />
+        </fieldset>
+        <a
+            class="reset-link"
+            href="/accounts/password_reset/"
+            >
+            Forgot your password?
+        </a>
+    </form>
+
+{% endblock %}

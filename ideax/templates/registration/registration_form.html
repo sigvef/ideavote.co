@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+
+    <form
+        class="pure-form pure-form-stacked wide-form login-form"
+        method="POST"
+        action=""
+        >
+
+        {% if form.non_field_errors %}
+            <div class="form-error">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        <fieldset>
+            {% csrf_token %}
+            <div class="{%if form.username.errors %} form-error {% endif %}">
+            <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                />
+                {{ form.username.errors }}
+            </div>
+            <div class="{%if form.email.errors %} form-error {% endif %}">
+            <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                />
+                {{ form.email.errors }}
+            </div>
+            <div class="{%if form.password1.errors %} form-error {% endif %}">
+            <input
+                type="password"
+                name="password1"
+                placeholder="Password"
+                />
+                {{ form.password2.errors }}
+            </div>
+            <div class="{%if form.password2.errors %} form-error {% endif %}">
+            <input
+                type="password"
+                name="password2"
+                placeholder="Password (again)"
+                />
+                {{ form.password2.errors }}
+            </div>
+            <input
+                type="submit"
+                class="pure-button pure-button-primary"
+                value="Register"
+                />
+        </fieldset>
+    </form>
+
+{% endblock %}
