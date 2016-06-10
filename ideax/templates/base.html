@@ -42,14 +42,14 @@
             <a class="username">
                 {{ request.user }}
             </a>
-            <a href="/accounts/logout/?next=/">
+            <a href="/accounts/logout/?next=/" class="pure-button">
               Log out
             </a>
         {% else %}
-            <a href="/accounts/register/">
+            <a href="/accounts/register/" class="pure-button">
               Register
             </a>
-            <a href="/accounts/login/">
+            <a href="/accounts/login/" class="pure-button">
               Log in
             </a>
         {% endif %}
