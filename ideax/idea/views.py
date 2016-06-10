@@ -56,6 +56,7 @@ class IdeaCreateView(View):
             idea.site = get_current_site(request)
             idea.author = request.user
             idea.save()
+            idea.upvoters.add(request.user)
             return HttpResponseRedirect(idea.get_absolute_url())
         return HttpResponse(form.errors)
 
