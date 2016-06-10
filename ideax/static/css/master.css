@@ -207,3 +207,7 @@ html, body {
   margin: 0;
   color: rgb(202, 60, 60);
 }
+
+blockquote {
+  border-left: 5px solid #ccc;
+}
