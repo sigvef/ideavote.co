@@ -22,6 +22,7 @@ class Idea(models.Model):
     updated_at = models.DateTimeField(null=True)
     site = models.ForeignKey(Site, null=True)
     tags = TaggableManager()
+    archived = models.BooleanField(default=False)
 
     def __unicode__(self):
         return 'Idea[#%s, title: %s]' % (self.pk, self.title)
