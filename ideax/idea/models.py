@@ -2,6 +2,7 @@ from django.conf import settings as django_conf_settings
 from django.contrib.sites.models import Site
 from django.db import models
 from django.utils import timezone
+from django.utils.crypto import get_random_string
 from django.utils.text import slugify
 from taggit.managers import TaggableManager
 import markdown
@@ -37,5 +38,6 @@ class Idea(models.Model):
         now = timezone.now()
         if not self.id:
             self.created_at = self.created_at or now
+            self.slug_id = get_random_string(length=4)
         self.updated_at = self.updated_at or now
         return super(Idea, self).save(*args, **kwargs)

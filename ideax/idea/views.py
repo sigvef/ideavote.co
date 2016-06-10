@@ -2,18 +2,62 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db import transaction
 from django.db.models import Count
+from django.http import Http404
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from django.utils import timezone
+from django.utils.decorators import method_decorator
 from django.views.generic import View
 from ideax.comment.models import Comment
 from ideax.idea.forms import IdeaForm
 from ideax.idea.models import Idea
 from ideax.idea.ranking_functions import hot
 from ideax.shortcuts import get_current_site
-import random
+
+
+class IdeaEditView(View):
+    @method_decorator(login_required)
+    def get(self, request, slug_id=None):
+        idea = get_object_or_404(Idea, slug_id=slug_id)
+        if request.user != idea.author:
+            raise Http404
+        return render(request, 'idea/idea_edit.html', {
+            'form': IdeaForm(instance=idea),
+        })
+
+    @method_decorator(login_required)
+    @method_decorator(transaction.atomic)
+    def post(self, request, slug_id=None):
+        idea = get_object_or_404(Idea, slug_id=slug_id)
+        if request.user != idea.author:
+            raise Http404
+        form = IdeaForm(request.POST, instance=idea)
+        if form.is_valid():
+            idea = form.save()
+            return HttpResponseRedirect(idea.get_absolute_url())
+        return HttpResponse(form.errors)
+
+
+class IdeaCreateView(View):
+    @method_decorator(login_required)
+    def get(self, request):
+        return render(request, 'idea/idea_edit.html', {
+            'form': IdeaForm(),
+        })
+
+    @method_decorator(login_required)
+    @method_decorator(transaction.atomic)
+    def post(self, request):
+        form = IdeaForm(request.POST)
+        if form.is_valid():
+            idea = form.save(commit=False)
+            idea.site = get_current_site(request)
+            idea.author = request.user
+            idea.save()
+            return HttpResponseRedirect(idea.get_absolute_url())
+        return HttpResponse(form.errors)
 
 
 class IdeaView(View):
@@ -81,18 +125,3 @@ class TopIdeaListView(IdeaListView):
             site=get_current_site(request),
             archived=False).annotate(
                 score=Count('upvoters')).order_by('-score')
-
-
-@login_required
-@transaction.atomic
-def post_idea(request):
-    if request.method == 'POST':
-        form = IdeaForm(data=request.POST)
-        if form.is_valid():
-            idea = form.save()
-            idea.author = request.user
-            idea.site = get_current_site(request)
-            idea.slug_id = random.randint(0, 99999999)
-            idea.save()
-            return HttpResponseRedirect(idea.get_absolute_url())
-        return HttpResponse(form.errors)

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+{% load upvote_widget %}
+{% load humanize %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/idea/idea.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<form
+  class="pure-form pure-form-stacked wide-form"
+  method="POST"
+  action=""
+  >
+  <fieldset>
+    <label>
+      Title
+      {{ form.title }}
+    </label>
+    <label>
+      Description
+      {{ form.text }}
+    </label>
+    <input
+      type="submit"
+      value="Save"
+      name="submit"
+      class="pure-button pure-button-primary"
+      />
+    <input
+      type="submit"
+      value="Preview"
+      name="submit"
+      class="pure-button"
+      />
+  </fieldset>
+</form>
+
+{% endblock %}

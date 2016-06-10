@@ -41,25 +41,34 @@
          </span>
      </div>
   </div>
+  <div class="action-toolbar reply-form-container">
+      {% if request.user == idea.author %}
+          <a
+              class="edit-idea-link"
+              href="/ideas/{{ idea.slug_id }}/edit"
+              >
+            Edit
+          </a>
+      {% endif %}
+
+    <div class="reply-button-container" style="margin-left: 15px; float:left">
+        <a href class="toggle-reply-form">Add comment</a>
+
+    </div>
+    <div class="reply-form" style="clear: both">
+        <form class="pure-form" method="POST" action="/comments/">
+            <fieldset>
+            <input type="hidden" name="idea" value="{{ idea.id }}" />
+            <textarea name="text"></textarea>
+            <input type="submit" value="Save" class="pure-button pure-button-primary" />
+            </fieldset>
+        </form>
+    </div>
+  </div>
 
   {% load mptt_tags %}
 
   <div class="comment-container">
-
-        <div class="reply-form-container">
-            <div class="reply-button-container" style="margin-left: 15px">
-                <a href>Add comment</a>
-            </div>
-            <div class="reply-form">
-                <form class="pure-form" method="POST" action="/comments/">
-                    <fieldset>
-                    <input type="hidden" name="idea" value="{{ idea.id }}" />
-                    <textarea name="text"></textarea>
-                    <input type="submit" value="Save" class="pure-button" />
-                    </fieldset>
-                </form>
-            </div>
-        </div>
 
       {% recursetree comments %}
       <div
@@ -75,7 +84,7 @@
                 {{ node.text }}
                 <div class="reply-form-container">
                     <div class="reply-button-container">
-                        <a href>Reply</a>
+                        <a href class="toggle-reply-form">Reply</a>
                          <div class="details">
                              {{ idea.created_at | naturaltime }}
                          </div>
