@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'ideax.site',
 
     'mptt',
+    'taggit',
 
     'django.contrib.admin',
     'registration',  # should be immediately above django.contrib.auth
@@ -109,3 +110,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'ideax/static'),
 ]
+
+TAGGIT_CASE_INSENSITIVE = True

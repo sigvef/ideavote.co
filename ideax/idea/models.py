@@ -3,6 +3,7 @@ from django.contrib.sites.models import Site
 from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
+from taggit.managers import TaggableManager
 import markdown
 
 
@@ -20,6 +21,7 @@ class Idea(models.Model):
     created_at = models.DateTimeField(null=True)
     updated_at = models.DateTimeField(null=True)
     site = models.ForeignKey(Site, null=True)
+    tags = TaggableManager()
 
     def __unicode__(self):
         return 'Idea[#%s, title: %s]' % (self.pk, self.title)

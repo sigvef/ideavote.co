@@ -2,5 +2,6 @@ Django==1.9.7
 Markdown==2.6.6
 django-mptt==0.8.4
 django-registration-redux==1.4
+django-taggit==0.19.1
 fake-factory==0.5.7
 pytz==2016.4
