@@ -20,36 +20,48 @@
         <fieldset>
             {% csrf_token %}
             <div class="{%if form.username.errors %} form-error {% endif %}">
-            <input
-                type="text"
-                name="username"
-                placeholder="Username"
-                />
-                {{ form.username.errors }}
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    {% if form.username.value %}
+                        value="{{ form.username.value }}"
+                    {% endif %}
+                    />
+                    {{ form.username.errors }}
             </div>
             <div class="{%if form.email.errors %} form-error {% endif %}">
-            <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                />
-                {{ form.email.errors }}
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    {% if form.email.value %}
+                        value="{{ form.email.value }}"
+                    {% endif %}
+                    />
+                    {{ form.email.errors }}
             </div>
             <div class="{%if form.password1.errors %} form-error {% endif %}">
-            <input
-                type="password"
-                name="password1"
-                placeholder="Password"
-                />
-                {{ form.password2.errors }}
+                <input
+                    type="password"
+                    name="password1"
+                    placeholder="Password"
+                    {% if form.password1.value %}
+                        value="{{ form.password1.value }}"
+                    {% endif %}
+                    />
+                    {{ form.password1.errors }}
             </div>
             <div class="{%if form.password2.errors %} form-error {% endif %}">
-            <input
-                type="password"
-                name="password2"
-                placeholder="Password (again)"
-                />
-                {{ form.password2.errors }}
+                <input
+                    type="password"
+                    name="password2"
+                    placeholder="Password (again)"
+                    {% if form.password2.value %}
+                        value="{{ form.password2.value }}"
+                    {% endif %}
+                    />
+                    {{ form.password2.errors }}
             </div>
             <input
                 type="submit"
