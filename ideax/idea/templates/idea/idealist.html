@@ -78,7 +78,9 @@
                      by {{ idea.author }}.
                  </span>
                  <span class="comment-count">
-                 {{ idea.comment_count }} comment{{ idea.comment_count | pluralize }}.
+                     <a href="{{ idea.get_absolute_url }}">
+                         {{ idea.comment_count }} comment{{ idea.comment_count | pluralize }}.
+                     </a>
                  </span>
              </div>
         </div>
