@@ -1,0 +1,55 @@
+{% load upvote_widget %}
+{% load humanize %}
+
+<div class="idea-list">
+{% for idea in ideas_page %}
+    <div class="idea box">
+        <div class="upvote-widget-wrapper">
+            {% upvote_widget idea user %}
+        </div>
+         <div class="title-wrapper">
+             <a href="{{ idea.get_absolute_url }}">
+                 {{ idea.title }}
+             </a>
+         </div>
+         <div class="details">
+             <div class="tags">
+                 {% for tag in idea.tags.all %}
+                     <div class="tag">{{ tag }}</div>
+                 {% endfor %}
+             </div>
+             <span class="created-at">
+                 {{ idea.created_at | naturaltime }}
+             </span>
+             <span class="author">
+                 by {{ idea.author }}.
+             </span>
+             <span class="comment-count">
+                 <a href="{{ idea.get_absolute_url }}">
+                     {{ idea.comment_count }} comment{{ idea.comment_count | pluralize }}.
+                 </a>
+             </span>
+         </div>
+    </div>
+{% endfor %}
+
+{% if ideas_page.has_previous %}
+    <a
+        style="float: left"
+        class="pure-button pure-button-primary"
+        href="{{ paging_url_prefix }}{{ ideas_page.previous_page_number }}"
+        >
+        Previous
+    </a>
+{% endif %}
+
+{% if ideas_page.has_next %}
+    <a
+        style="float: right"
+        class="pure-button pure-button-primary"
+        href="{{ paging_url_prefix }}{{ ideas_page.next_page_number }}"
+        >
+        Next
+    </a>
+{% endif %}
+</div>

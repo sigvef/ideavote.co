@@ -1,5 +1,4 @@
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
 from django.db import transaction
 from django.db.models import Count
 from django.http import Http404
@@ -91,11 +90,12 @@ class IdeaListView(View):
                                    archived=False)
 
     def get(self, request, page=1):
-        paginator = Paginator(self.get_idea_queryset(request), 15)
-        ideas_page = paginator.page(page)
+        ideas = self.get_idea_queryset(request)
         return render(request, 'idea/idealist.html', {
-            "ideas_page": ideas_page,
-            "ordering": self.ordering,
+            'ordering': self.ordering,
+            'ideas': ideas,
+            'page': page,
+            'paging_url_prefix': '/%s/' % self.ordering,
         })
 
 

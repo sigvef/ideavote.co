@@ -2,12 +2,16 @@
 
 {% load staticfiles %}
 {% load humanize %}
+{% load idea_list %}
 
 {% block css %}
+    <link rel="stylesheet" href="{% static 'css/idea/idealist.css' %}">
 {% endblock %}
 
 {% block content %}
-  <div class="box">
-  {{ user }}
-  </div>
+
+  Ideas submitted by {{ user.username }}:
+
+  {% idea_list ideas 1 request.user %}
+
 {% endblock %}
