@@ -120,3 +120,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 TAGGIT_CASE_INSENSITIVE = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+LOGIN_REDIRECT_URL = '/'
