@@ -1,3 +1,4 @@
+-e git://github.com/django-notifications/django-notifications.git@9f3e0105c2d4bd424f65b33e588070dc6be0c80b#egg=django-notifications-hq
 Django==1.9.7
 Fabric==1.11.1
 Markdown==2.6.6

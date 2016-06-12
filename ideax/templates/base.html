@@ -1,4 +1,6 @@
 {% load staticfiles %}
+{% load notifications_tags %}
+{% notifications_unread as notifications_unread_count %}
 
 <!DOCTYPE html>
 <html>
@@ -46,6 +48,20 @@
                     style="background: transparent; color: white"
                     >
                     {{ request.user }}
+                </a>
+                <a
+                    href="/notifications/"
+                    class="notification-link"
+                    >
+                    📥
+                    <span
+                        class="
+                            badge
+                            {% if notifications_unread_count %} badge-highlight {% endif %}
+                        ">
+                        {{ notifications_unread_count }}
+                        unread
+                    </span>
                 </a>
                 <a href="/accounts/logout/?next=/" class="pure-button">
                   Log out

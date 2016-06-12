@@ -211,3 +211,26 @@ html, body {
 blockquote {
   border-left: 5px solid #ccc;
 }
+
+.menu a.notification-link {
+  color: white;
+  text-decoration: none;
+  margin-right: 15px;
+}
+
+.badge {
+  font-size: 12px;
+  border-radius: 7px;
+  color: #222;
+  background: white;
+  height: 15px;
+  line-height: 15px;
+  text-align: center;
+  display: inline-block;
+  padding: 2px 6px;
+}
+
+.badge-hilight {
+  background: rgb(202, 60, 60);
+  color: white;
+}

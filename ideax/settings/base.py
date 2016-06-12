@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'django.contrib.sites',
+
+    'notifications',  # needs to come after apps that generate notifications
 ]
 
 MIDDLEWARE_CLASSES = [
