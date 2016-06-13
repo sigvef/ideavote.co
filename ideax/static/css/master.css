@@ -259,3 +259,25 @@ blockquote {
 .hilight-comment {
   background: #ffffdf;
 }
+
+.log-in-with-reddit-button {
+  width: 100%;
+  position: relative;
+  background: #cee3f8;
+}
+
+.log-in-with-reddit-button .snoo {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  bottom: 5px;
+  width: 32px;
+  height: 32px;
+}
+
+.login-or-text {
+  text-align: center;
+  color: #888;
+  font-size: 14px;
+  margin-bottom: 30px;
+}

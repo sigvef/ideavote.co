@@ -3,6 +3,8 @@
 {% block css %}
 {% endblock %}
 
+{% load static %}
+
 {% block content %}
 
     <form
@@ -46,14 +48,6 @@
                 class="pure-button pure-button-primary"
                 value="Log in"
                 />
-            <p style="text-align: center">or</p>
-            <a
-                href="/social/login/reddit/"
-                class="pure-button"
-                style="width: 100%"
-                >
-                Log in with reddit
-            </a>
         </fieldset>
         <a
             class="reset-link"
@@ -61,6 +55,16 @@
             >
             Forgot your password?
         </a>
+
+        <p class="login-or-text">or</p>
+        <a
+            href="/social/login/reddit/"
+            class="pure-button log-in-with-reddit-button"
+            >
+            <img class="snoo" src="{% static 'img/snoo.png' %}" />
+            Log in with reddit
+        </a>
+
     </form>
 
 {% endblock %}
