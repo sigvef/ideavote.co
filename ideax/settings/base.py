@@ -128,7 +128,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 LOGIN_REDIRECT_URL = '/'
 
 ANYMAIL = {}
-DEFAULT_FROM_EMAIL = 'noreply@ideavote.co'
+DEFAULT_FROM_EMAIL = 'noreply@mg.ideavote.co'
 
 
 LOGGING = {
