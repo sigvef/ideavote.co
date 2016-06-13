@@ -3,10 +3,12 @@ from django.conf.urls import include
 from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
     url(r'^notifications', include('ideax.notify.urls')),
     url(r'^users/', include('ideax.user.urls')),
+    url(r'^accounts/register/complete/', RedirectView.as_view(url='/')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^comments/', include('ideax.comment.urls')),
