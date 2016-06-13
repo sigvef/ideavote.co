@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'ideax.site',
     'ideax.user',
 
+    'anymail',
     'mptt',
     'taggit',
 
@@ -125,3 +126,6 @@ TAGGIT_CASE_INSENSITIVE = True
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 LOGIN_REDIRECT_URL = '/'
+
+ANYMAIL = {}
+DEFAULT_FROM_EMAIL = 'noreply@ideavote.co'
