@@ -2,6 +2,10 @@ import os
 
 DEBUG = True
 
+ADMINS = (
+    ('Sigve', 'ideavote.co@arkt.is'),
+)
+
 APPEND_SLASH = False
 
 SESSION_COOKIE_DOMAIN = 'localhost'
