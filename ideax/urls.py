@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 
 urlpatterns = [
+    url(r'^notifications', include('ideax.notify.urls')),
     url(r'^users/', include('ideax.user.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^accounts/', include('registration.backends.simple.urls')),

@@ -234,3 +234,13 @@ blockquote {
   background: rgb(202, 60, 60);
   color: white;
 }
+
+.transparent-button,
+.transparent-button:hover {
+  border: transparent;
+  background: transparent;
+}
+
+.hilight-comment {
+  background: #ffffdf;
+}

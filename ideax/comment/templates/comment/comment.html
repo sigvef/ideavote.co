@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+{% load upvote_widget %}
+{% load humanize %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/idea/idea.css' %}">
+{% endblock %}
+
+{% block content %}
+
+  {% load mptt_tags %}
+
+  <div class="comment-container">
+
+      {% recursetree comments %}
+      <div class="comment">
+        <div class="collapsible-container">
+            <a href class="collapse-thread">[-]</a>
+                <div class="collapsible" style="display: none">
+                    <span class="author">{{ node.author }}</span>
+                </div>
+                <div class="collapsible">
+                <div class="{% if node.id == hilight_id %} hilight-comment {% endif %}">
+                <span class="author">{{ node.author }}:</span>
+                {{ node.text }}
+                <div class="reply-form-container">
+                    <div class="reply-button-container">
+                        <a href class="toggle-reply-form">Reply</a>
+                         <div class="details">
+                             {{ node.created_at | naturaltime }}
+                         </div>
+                    </div>
+                    <div class="reply-form">
+                        <form class="pure-form" method="POST" action="/comments/">
+                            <fieldset>
+                            <input type="hidden" name="parent" value="{{ node.id }}" />
+                            <textarea name="text"></textarea>
+                            <input type="submit" value="Save" class="pure-button" />
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+              </div>
+
+                {% if not node.is_leaf_node %}
+                  {{ children }}
+                {% endif %}
+            </div>
+        </div>
+      </div>
+      {% endrecursetree %}
+  </div>
+
+{% endblock %}

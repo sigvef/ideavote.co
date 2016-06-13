@@ -4,7 +4,11 @@ from django.db import transaction
 from django.db.models import F
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
+from django.shortcuts import render
+from django.views.generic import View
 from ideax.comment.forms import CommentForm
+from ideax.comment.models import Comment
 from notifications.signals import notify
 
 
@@ -32,3 +36,13 @@ def post_comment(request):
                         target=comment.parent)
         return HttpResponseRedirect(comment.idea.get_absolute_url())
     return HttpResponse(form.errors)
+
+
+class CommentView(View):
+    def get(self, request, id=None):
+        comment = get_object_or_404(Comment, id=id)
+        comments = [comment.parent, comment] + list(comment.children.all())
+        return render(request, 'comment/comment.html', {
+            'comments': comments,
+            'hilight_id': comment.id,
+        })

@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'ideax.comment',
     'ideax.frontpage',
     'ideax.idea',
+    'ideax.notify',
     'ideax.site',
     'ideax.user',
 

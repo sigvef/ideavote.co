@@ -44,13 +44,13 @@
             {% if request.user.is_authenticated %}
                 <a
                     href="/users/{{ request.user.username }}"
-                    class="username pure-button"
-                    style="background: transparent; color: white"
+                    class="username pure-button transparent-button"
+                    style="color: white"
                     >
                     {{ request.user }}
                 </a>
                 <a
-                    href="/notifications/"
+                    href="/notifications"
                     class="notification-link"
                     >
                     📥

@@ -31,3 +31,6 @@ class Comment(MPTTModel):
             self.created_at = self.created_at or now
         self.updated_at = self.updated_at or now
         return super(Comment, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return '/comments/%s' % self.id

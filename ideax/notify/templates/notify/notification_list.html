@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+{% load upvote_widget %}
+{% load humanize %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/idea/idea.css' %}">
+{% endblock %}
+
+{% block content %}
+
+  <div class="notification-list">
+    {% for notification in notifications %}
+      <form
+        method="POST"
+        action="/notifications/{{ notification.id }}"
+        >
+        {% csrf_token %}
+        <input
+          type="submit"
+          class="pure-button transparent-button"
+          value="{{ notification.actor }} {{ notification.verb }} to your comment
+          {{ notification.timestamp | naturaltime }}"
+          />
+      </form>
+    {% endfor %}
+  </div>
+
+{% endblock %}
