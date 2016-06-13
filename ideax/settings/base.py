@@ -27,6 +27,7 @@ INSTALLED_APPS = [
 
     'anymail',
     'mptt',
+    'social.apps.django_app.default',
     'taggit',
 
     'django.contrib.admin',
@@ -69,6 +70,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
@@ -181,3 +184,12 @@ LOGGING = {
         },
     },
 }
+
+AUTHENTICATION_BACKENDS = (
+    'social.backends.reddit.RedditOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_REDDIT_KEY = ''
+SOCIAL_AUTH_REDDIT_SECRET = ''
+SOCIAL_AUTH_REDDIT_AUTH_EXTRA_ARGUMENTS = {'duration': 'permanent'}

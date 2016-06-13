@@ -14,5 +14,7 @@ urlpatterns = [
     url(r'^comments/', include('ideax.comment.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^ideas/', include('ideax.idea.urls')),
+    url(r'^social/', include('social.apps.django_app.urls',
+                             namespace='social')),
     url(r'', include('ideax.frontpage.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
