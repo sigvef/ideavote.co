@@ -174,7 +174,7 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
-        'ideax': {
+        '': {
             'handlers': ['log_file'],
             'level': 'INFO',
             'propagate': True,
