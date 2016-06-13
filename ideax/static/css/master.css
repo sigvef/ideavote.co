@@ -38,6 +38,17 @@ html, body {
   left: 20px;
 }
 
+@media (max-width: 767px) {
+  .banner,
+  .banner.large-banner {
+    height: 150px;
+  }
+  .banner h1 {
+    top: 15px;
+    bottom: auto;
+  }
+}
+
 .banner h1 a {
   text-decoration: none;
   color: white;
