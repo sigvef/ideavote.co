@@ -25,6 +25,9 @@
           />
       </form>
     {% endfor %}
+    {% if not notifications %}
+        No new notifications.
+    {% endif %}
   </div>
 
 {% endblock %}
