@@ -4,3 +4,4 @@ venv/
 *.sqlite3
 media/
 django.log
+ideax/settings/local.py
