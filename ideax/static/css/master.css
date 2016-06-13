@@ -75,6 +75,8 @@ html, body {
   background: white;
   box-shadow: 0px 1px 3px rgba(0,0,0,0.1);
   position: relative;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .pure-form input[type=text], .pure-form input[type=password], .pure-form input[type=email], .pure-form input[type=url], .pure-form input[type=date], .pure-form input[type=month], .pure-form input[type=time], .pure-form input[type=datetime], .pure-form input[type=datetime-local], .pure-form input[type=week], .pure-form input[type=number], .pure-form input[type=search], .pure-form input[type=tel], .pure-form input[type=color], .pure-form select, .pure-form textarea {
