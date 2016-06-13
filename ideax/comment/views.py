@@ -25,15 +25,16 @@ def post_comment(request):
         idea = comment.idea
         idea.comment_count = F('comment_count') + 1
         idea.save()
-        parent_author = get_user_model().objects.filter(
-            username=comment.parent.author)
-        if len(parent_author) == 1:
-            notify.send(request.user,
-                        recipient=parent_author[0],
-                        verb='replied',
-                        action_object=comment,
-                        description=comment.text,
-                        target=comment.parent)
+        if comment.parent:
+            parent_author = get_user_model().objects.filter(
+                username=comment.parent.author)
+            if len(parent_author) == 1:
+                notify.send(request.user,
+                            recipient=parent_author[0],
+                            verb='replied',
+                            action_object=comment,
+                            description=comment.text,
+                            target=comment.parent)
         return HttpResponseRedirect(comment.idea.get_absolute_url())
     return HttpResponse(form.errors)
 
