@@ -3,6 +3,11 @@ $(function() {
 
   $('.upvote-widget .star').click(function(e) {
     e.preventDefault();
+
+    if(!window.IS_LOGGED_IN) {
+      window.location = '/accounts/login/?next=' + window.location.pathname;
+    }
+
     var ideaId = $(this).data('idea-id');
     var upvoteWidget = $(this.parentElement.parentElement);
     var upvoteMarker = $(this.parentElement);
