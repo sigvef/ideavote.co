@@ -72,6 +72,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'social.apps.django_app.context_processors.backends',
                 'social.apps.django_app.context_processors.login_redirect',
+                'ideax.context_processors.google_analytics',
             ],
         },
     },
@@ -193,3 +194,5 @@ AUTHENTICATION_BACKENDS = (
 SOCIAL_AUTH_REDDIT_KEY = ''
 SOCIAL_AUTH_REDDIT_SECRET = ''
 SOCIAL_AUTH_REDDIT_AUTH_EXTRA_ARGUMENTS = {'duration': 'permanent'}
+
+GOOGLE_ANALYTICS_KEY = ''
