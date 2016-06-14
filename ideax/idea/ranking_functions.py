@@ -7,7 +7,7 @@ epoch = datetime.datetime(1970, 1, 1).replace(tzinfo=pytz.utc)
 
 def epoch_seconds(date):
     td = date - epoch
-    return td.days * 86400 + td.seconds + (float(td.microseconds) / 1000000)
+    return td.total_seconds()
 
 
 def hot(idea):
