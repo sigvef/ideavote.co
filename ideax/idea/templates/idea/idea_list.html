@@ -4,6 +4,13 @@
 <div class="idea-list">
 {% for idea in ideas_page %}
     <div class="idea box">
+        {% if idea.archived %}
+            <div class="archived-banner">
+                <div class="text">
+                    Archived
+                </div>
+            </div>
+        {% endif %}
         <div class="upvote-widget-wrapper">
             {% upvote_widget idea user %}
         </div>

@@ -280,3 +280,26 @@ blockquote {
   font-size: 14px;
   margin-bottom: 30px;
 }
+
+.idea .archived-banner {
+  padding: 5px;
+  background: #888;
+  color: white;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 15px;
+}
+
+.idea .archived-banner .text {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  transform: rotate(270deg);
+  font-size: 10px;
+  text-transform: uppercase;
+  padding: 15px 2px;
+}
