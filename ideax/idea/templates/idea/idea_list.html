@@ -33,23 +33,25 @@
     </div>
 {% endfor %}
 
-{% if ideas_page.has_previous %}
-    <a
-        style="float: left"
-        class="pure-button pure-button-primary"
-        href="{{ paging_url_prefix }}{{ ideas_page.previous_page_number }}"
-        >
-        Previous
-    </a>
-{% endif %}
+    <div class="idea-list-bottom-navbar">
+    {% if ideas_page.has_previous %}
+        <a
+            style="float: left"
+            class="pure-button pure-button-primary"
+            href="{{ paging_url_prefix }}{{ ideas_page.previous_page_number }}"
+            >
+            Previous
+        </a>
+    {% endif %}
 
-{% if ideas_page.has_next %}
-    <a
-        style="float: right"
-        class="pure-button pure-button-primary"
-        href="{{ paging_url_prefix }}{{ ideas_page.next_page_number }}"
-        >
-        Next
-    </a>
-{% endif %}
+    {% if ideas_page.has_next %}
+        <a
+            style="float: right"
+            class="pure-button pure-button-primary"
+            href="{{ paging_url_prefix }}{{ ideas_page.next_page_number }}"
+            >
+            Next
+        </a>
+    {% endif %}
+    </div>
 </div>

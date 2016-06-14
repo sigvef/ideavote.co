@@ -281,3 +281,7 @@ blockquote {
   font-size: 14px;
   margin-bottom: 30px;
 }
+
+.idea-list-bottom-navbar {
+  margin: 0 15px;
+}
