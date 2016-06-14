@@ -20,7 +20,7 @@
         <input
           type="submit"
           class="pure-button transparent-button"
-          value="{{ notification.actor }} {{ notification.verb }} to your comment
+          value="{{ notification.actor }} {{ notification.verb }} to your {{ notification.target.get_notify_target_name }}
           {{ notification.timestamp | naturaltime }}"
           />
       </form>

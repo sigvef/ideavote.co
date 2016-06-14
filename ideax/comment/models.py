@@ -34,3 +34,6 @@ class Comment(MPTTModel):
 
     def get_absolute_url(self):
         return '/comments/%s' % self.id
+
+    def get_notify_target_name(self):
+        return 'comment'

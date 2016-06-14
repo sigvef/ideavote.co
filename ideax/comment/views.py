@@ -28,13 +28,17 @@ def post_comment(request):
         if comment.parent:
             parent_author = get_user_model().objects.filter(
                 username=comment.parent.author)
-            if len(parent_author) == 1:
-                notify.send(request.user,
-                            recipient=parent_author[0],
-                            verb='replied',
-                            action_object=comment,
-                            description=comment.text,
-                            target=comment.parent)
+            target = comment.parent
+        elif comment.idea:
+            parent_author = [idea.author]
+            target = idea
+        if len(parent_author) == 1:
+            notify.send(request.user,
+                        recipient=parent_author[0],
+                        verb='replied',
+                        action_object=comment,
+                        description=comment.text,
+                        target=target)
         return HttpResponseRedirect(comment.idea.get_absolute_url())
     return HttpResponse(form.errors)
 
@@ -42,7 +46,8 @@ def post_comment(request):
 class CommentView(View):
     def get(self, request, id=None):
         comment = get_object_or_404(Comment, id=id)
-        comments = [comment.parent, comment] + list(comment.children.all())
+        comments = [comment.parent] if comment.parent else []
+        comments += [comment] + list(comment.children.all())
         return render(request, 'comment/comment.html', {
             'comments': comments,
             'hilight_id': comment.id,

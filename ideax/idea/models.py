@@ -41,3 +41,6 @@ class Idea(models.Model):
             self.slug_id = get_random_string(length=4)
         self.updated_at = self.updated_at or now
         return super(Idea, self).save(*args, **kwargs)
+
+    def get_notify_target_name(self):
+        return 'idea'
