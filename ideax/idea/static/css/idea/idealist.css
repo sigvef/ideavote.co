@@ -1,9 +1,6 @@
-.idea-input {
-  margin: 0 15px;
-}
-
 .idea-input input[type=text] {
   width: 100%;
+  margin-top: 15px;
 }
 
 .idea-input textarea {
