@@ -10,7 +10,8 @@ def epoch_seconds(date):
     return td.days * 86400 + td.seconds + (float(td.microseconds) / 1000000)
 
 
-def hot(idea, date):
+def hot(idea):
+    date = idea.created_at
     score = idea.upvoters.count()
     order = math.log(max(abs(score), 1), 10)
     sign = 1 if score > 0 else -1 if score < 0 else 0

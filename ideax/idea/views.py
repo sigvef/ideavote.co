@@ -6,7 +6,6 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
-from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.generic import View
 from ideax.comment.models import Comment
@@ -103,10 +102,9 @@ class HotIdeaListView(IdeaListView):
     ordering = 'hot'
 
     def get_idea_queryset(self, request):
-        now = timezone.now()
         return sorted(Idea.objects.filter(site=get_current_site(request),
                                           archived=False),
-                      key=lambda idea: -hot(idea, now))
+                      key=hot, reverse=True)
 
 
 class NewIdeaListView(IdeaListView):
