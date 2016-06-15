@@ -5,3 +5,4 @@ venv/
 media/
 django.log
 ideax/settings/local.py
+whoosh_index

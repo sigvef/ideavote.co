@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'ideax.user',
 
     'anymail',
+    'haystack',
     'mptt',
     'social.apps.django_app.default',
     'taggit',
@@ -200,3 +201,10 @@ SOCIAL_AUTH_REDDIT_SECRET = ''
 SOCIAL_AUTH_REDDIT_AUTH_EXTRA_ARGUMENTS = {'duration': 'permanent'}
 
 GOOGLE_ANALYTICS_KEY = ''
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    },
+}

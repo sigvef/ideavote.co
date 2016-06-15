@@ -8,6 +8,7 @@ html, body {
 }
 
 .wide-form input[type=text],
+.wide-form input[type=search],
 .wide-form input[type=password],
 .wide-form input[type=email],
 .wide-form textarea {
@@ -302,4 +303,12 @@ blockquote {
   font-size: 10px;
   text-transform: uppercase;
   padding: 15px 2px;
+}
+
+.highlighted {
+  font-weight: bold;
+}
+
+.search-title-link {
+  text-decoration: none;
 }

@@ -1,8 +1,10 @@
+-e git://github.com/django-haystack/django-haystack.git@622921f55cda896868b284ff4c7f0413cd2c52ba#egg=django-haystack
 -e git://github.com/django-notifications/django-notifications.git@9f3e0105c2d4bd424f65b33e588070dc6be0c80b#egg=django-notifications-hq
 Django==1.9.7
 Fabric==1.11.1
 Markdown==2.6.6
 Pillow==3.2.0
+Whoosh==2.7.4
 django-anymail==0.3.1
 django-mptt==0.8.4
 django-registration-redux==1.4

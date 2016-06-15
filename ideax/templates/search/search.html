@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load upvote_widget %}
+{% load humanize %}
+{% load static %}
+{% load highlight %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/idea/idea.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <h2>Search</h2>
+
+    <form
+        method="GET"
+        action=""
+        class="pure-form pure-form-stacked wide-form"
+        >
+        {{ form.q }}
+        <input
+            type="submit"
+            value="Search"
+            class="pure-button pure-button-primary"
+            >
+    </form>
+
+        {% if query %}
+            <h3>Results</h3>
+
+            {% for idea in page.object_list %}
+  <div class="idea box">
+
+    {% if idea.object.archived %}
+        <div class="archived-banner">
+            <div class="text">
+                Archived
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="idea-header">
+        <div class="upvote-widget-wrapper">
+            {% upvote_widget idea.object request.user %}
+        </div>
+
+        <h2 class="title">
+            <a href="{{ idea.object.get_absolute_url }}" class="search-title-link">
+                {% highlight idea.object.title with query %}
+            </a>
+        </h2>
+    </div>
+
+    <div class="text">
+        {% highlight idea.object.text with query %}
+    </div>
+
+     <div class="details">
+         <div class="tags">
+             {% for tag in idea.object.tags.all %}
+                 <div class="tag">{% highlight tag with query %}</div>
+             {% endfor %}
+         </div>
+         <span class="created-at">
+             {{ idea.object.created_at | naturaltime }}
+         </span>
+         <span class="author">
+             by {% highlight idea.object.author.username with query %}.
+         </span>
+         <span class="comment-count">
+         {{ idea.object.comment_count }} comment{{ idea.object.comment_count | pluralize }}.
+         </span>
+     </div>
+  </div>
+            {% empty %}
+                <p>No results found.</p>
+            {% endfor %}
+
+            {% if page.has_previous or page.has_next %}
+                <div>
+                    {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
+                    |
+                    {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+                </div>
+            {% endif %}
+        {% else %}
+            {# Show some example queries to run, maybe query syntax, something else? #}
+        {% endif %}
+{% endblock %}
