@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from django.views.generic import View
+from haystack.query import SearchQuerySet
 from haystack.views import SearchView
 from ideax.comment.models import Comment
 from ideax.idea.forms import IdeaForm
@@ -129,6 +130,7 @@ class TopIdeaListView(IdeaListView):
 
 class IdeaSearchView(SearchView):
 
-    def get_queryset(self):
-        return super(IdeaSearchView, self).get_queryset().filter(
-            site=self.request.site)
+    def __call__(self, request):
+        ret = super(IdeaSearchView, self).__call__(request)
+        self.searchqueryset = SearchQuerySet().filter(site=request.site.domain)
+        return ret

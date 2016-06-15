@@ -4,7 +4,7 @@ from ideax.idea.models import Idea
 
 class IdeaIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
-    site = indexes.CharField()
+    site = indexes.CharField(model_attr='site__domain')
     author = indexes.CharField()
     archived = indexes.BooleanField()
 
