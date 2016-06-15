@@ -4,9 +4,10 @@ from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic.base import RedirectView
+from ideax.idea.views import IdeaSearchView
 
 urlpatterns = [
-    url(r'^search/', include('haystack.urls')),
+    url(r'^search/', IdeaSearchView()),
     url(r'^notifications', include('ideax.notify.urls')),
     url(r'^users/', include('ideax.user.urls')),
     url(r'^accounts/register/complete/', RedirectView.as_view(url='/')),

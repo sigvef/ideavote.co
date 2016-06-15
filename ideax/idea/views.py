@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from django.views.generic import View
+from haystack.views import SearchView
 from ideax.comment.models import Comment
 from ideax.idea.forms import IdeaForm
 from ideax.idea.models import Idea
@@ -124,3 +125,10 @@ class TopIdeaListView(IdeaListView):
             site=get_current_site(request),
             archived=False).annotate(
                 score=Count('upvoters')).order_by('-score')
+
+
+class IdeaSearchView(SearchView):
+
+    def get_queryset(self):
+        return super(IdeaSearchView, self).get_queryset().filter(
+            site=self.request.site)
