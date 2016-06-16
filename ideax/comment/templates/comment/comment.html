@@ -24,7 +24,7 @@
                 <div class="collapsible">
                 <div class="{% if node.id == hilight_id %} hilight-comment {% endif %}">
                 <span class="author">{{ node.author }}:</span>
-                {{ node.text }}
+                {{ node.get_rendered_text | safe }}
                 <div class="reply-form-container">
                     <div class="reply-button-container">
                         <a href class="toggle-reply-form">Reply</a>

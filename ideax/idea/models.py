@@ -32,7 +32,10 @@ class Idea(models.Model):
         return '/ideas/%s/%s' % (self.slug_id, slugify(self.title))
 
     def get_rendered_text(self):
-        return markdown.markdown(self.text)
+        return markdown.markdown(
+            self.text,
+            output_format='html5',
+            safe_mode='escape')
 
     def save(self, *args, **kwargs):
         now = timezone.now()

@@ -1,3 +1,5 @@
+from bleach import clean
+from bleach import linkify
 from django.db import models
 from django.utils import timezone
 from ideax.idea.models import Idea
@@ -37,3 +39,6 @@ class Comment(MPTTModel):
 
     def get_notify_target_name(self):
         return 'comment'
+
+    def get_rendered_text(self):
+        return linkify(clean(self.text, tags=[]))

@@ -5,6 +5,7 @@ Fabric==1.11.1
 Markdown==2.6.6
 Pillow==3.2.0
 Whoosh==2.7.4
+bleach==1.4.3
 django-anymail==0.3.1
 django-mptt==0.8.4
 django-registration-redux==1.4
