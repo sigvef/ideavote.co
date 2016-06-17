@@ -58,7 +58,7 @@
      <div class="details">
          <div class="tags">
              {% for tag in idea.object.tags.all %}
-                 <div class="tag">{% highlight tag with query %}</div>
+                 <div class="tag">{% highlight tag.name with query %}</div>
              {% endfor %}
          </div>
          <span class="created-at">
