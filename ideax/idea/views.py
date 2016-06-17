@@ -131,6 +131,5 @@ class TopIdeaListView(IdeaListView):
 class IdeaSearchView(SearchView):
 
     def __call__(self, request):
-        ret = super(IdeaSearchView, self).__call__(request)
         self.searchqueryset = SearchQuerySet().filter(site=request.site.domain)
-        return ret
+        return super(IdeaSearchView, self).__call__(request)
