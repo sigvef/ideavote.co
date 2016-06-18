@@ -10,6 +10,20 @@
 
 {% block content %}
 
+    {% if moderator_sites %}
+    <div class="moderator">
+      Moderator for:
+
+      {% for site_settings in moderator_sites %}
+          <div class="site">
+              <a href="//{{ site_settings.site.domain }}">
+                  {{ site_settings.site.name }}
+              </a>
+          </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
   Ideas submitted by {{ user.username }}:
 
   {% idea_list ideas 1 request.user %}

@@ -13,8 +13,10 @@ class ProfileView(View):
         ideas = Idea.objects.filter(
             author=user,
             site=get_current_site(request)).order_by('-created_at')
+        moderator_sites = user.moderator_sites.all
         return render(request, 'user/profile.html', {
             'user': user,
             'ideas': ideas,
+            'moderator_sites': moderator_sites,
             'paging_url_prefix': '/users/%s/ideas/' % user.username,
         })
