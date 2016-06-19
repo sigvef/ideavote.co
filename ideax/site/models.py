@@ -5,7 +5,7 @@ from django.conf import settings
 
 class SiteSettings(models.Model):
     banner_image = models.ImageField(null=True)
-    site = models.ForeignKey(Site, related_name='settings')
+    site = models.OneToOneField(Site, related_name='settings')
     moderators = models.ManyToManyField(settings.AUTH_USER_MODEL,
                                         related_name='moderator_sites')
     owner = models.ForeignKey(settings.AUTH_USER_MODEL,

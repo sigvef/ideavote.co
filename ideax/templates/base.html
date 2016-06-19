@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'css/pure-min.css' %}">
     <link rel="stylesheet" href="{% static 'css/grids-responsive-min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery.tagsinput.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/master.css' %}">
     {% block css %}
     {% endblock %}
@@ -27,6 +28,7 @@
       crossorigin="anonymous"
     >
     </script>
+    <script src="{% static 'js/jquery.tagsinput.min.js' %}"></script>
     <script src="{% static 'js/upvote_widget.js' %}"></script>
     <script src="{% static 'js/comments.js' %}"></script>
   </head>
@@ -89,6 +91,27 @@
       <span class="copyright-symbol">&copy;</span>
       <a href="https://ideavote.ideavote.co">ideavote.co</a>
     </div>
+
+    <script>
+        $('input.tag-editor').tagsInput({
+            height: 'auto', 
+            width: 'auto',
+            defaultText: '✎ add a tag',
+            placeholderColor: '#888',
+            onChange: function(element, tag) {
+                element = element[0];
+                var breakCounter = 10;
+                while(breakCounter-- && element.tagName != 'FORM') {
+                    element = element.parentElement;
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: element.action,
+                    data: $(element).serialize()
+                });
+            }
+        });
+    </script>
 
     {% if GOOGLE_ANALYTICS_KEY %}
     <script>

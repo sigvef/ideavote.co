@@ -145,15 +145,19 @@ html, body {
 .tags {
   display: inline-block;
   margin-right: 5px;
+  vertical-align: bottom;
 }
 
-.tag {
+.tag,
+div.tagsinput span.tag {
   border: 1px solid #888;
   font-size: 12px;
   color: #888;
   padding: 2px 6px;
   border-radius: 2px;
   display: inline-block;
+  background: transparent;
+  margin: 0;
 }
 
 .sticky-footer-page-wrapper {
@@ -311,4 +315,25 @@ blockquote {
 
 .search-title-link {
   text-decoration: none;
+}
+
+div.tagsinput {
+  padding: 0;
+  border: 0;
+  margin-bottom: -4px;
+}
+
+div.tagsinput input {
+  padding: 5px;
+  margin: 0;
+  border: 0;
+}
+
+div.tagsinput span.tag {
+  margin: 3px 2px 2px 2px;
+}
+
+div.tagsinput span.tag a {
+  color: #888;
+  vertical-align: top;
 }

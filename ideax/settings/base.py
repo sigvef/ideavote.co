@@ -78,6 +78,7 @@ TEMPLATES = [
                 'social.apps.django_app.context_processors.backends',
                 'social.apps.django_app.context_processors.login_redirect',
                 'ideax.context_processors.google_analytics',
+                'ideax.context_processors.site_permissions',
             ],
         },
     },

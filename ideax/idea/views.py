@@ -3,6 +3,7 @@ from django.db import transaction
 from django.db.models import Count
 from django.http import Http404
 from django.http import HttpResponse
+from django.http import HttpResponseNotFound
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
@@ -12,6 +13,7 @@ from haystack.query import SearchQuerySet
 from haystack.views import SearchView
 from ideax.comment.models import Comment
 from ideax.idea.forms import IdeaForm
+from ideax.idea.forms import IdeaTagForm
 from ideax.idea.models import Idea
 from ideax.idea.ranking_functions import hot
 from ideax.shortcuts import get_current_site
@@ -37,6 +39,21 @@ class IdeaEditView(View):
         if form.is_valid():
             idea = form.save()
             return HttpResponseRedirect(idea.get_absolute_url())
+        return HttpResponse(form.errors)
+
+
+class IdeaTagView(View):
+    @method_decorator(login_required)
+    def post(self, request, slug_id=None):
+        idea = get_object_or_404(Idea, slug_id=slug_id)
+        if not request.user.moderator_sites.filter(
+                id=idea.site.settings.id).exists():
+            return HttpResponseNotFound()
+        form = IdeaTagForm(request.POST)
+        if form.is_valid():
+            tags = form.cleaned_data['tags'].split(',')
+            idea.tags.set(*tags)
+            return HttpResponse('OK')
         return HttpResponse(form.errors)
 
 

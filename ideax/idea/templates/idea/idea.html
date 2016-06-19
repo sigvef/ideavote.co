@@ -34,9 +34,22 @@
 
      <div class="details">
          <div class="tags">
-             {% for tag in idea.tags.all %}
-                 <div class="tag">{{ tag }}</div>
-             {% endfor %}
+             {% if IS_MODERATOR %}
+             <form
+                 action="/ideas/{{ idea.slug_id }}/tags"
+                 method="POST"
+                 >
+                 <input
+                     class="tag-editor"
+                     name="tags"
+                     value="{{ idea.tags.names | join:',' }}"
+                     >
+             </form>
+             {% else %}
+                 {% for tag in idea.tags.all %}
+                     <div class="tag">{{ tag }}</div>
+                 {% endfor %}
+             {% endif %}
          </div>
          <span class="created-at">
              {{ idea.created_at | naturaltime }}
