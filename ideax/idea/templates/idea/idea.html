@@ -74,6 +74,27 @@
                 Edit
               </a>
           {% endif %}
+          {% if IS_MODERATOR %}
+              <form
+                  class="archive-form"
+                  method="POST"
+                  >
+                {% if idea.archived %}
+                  <input
+                      type="submit"
+                      class="archive-button"
+                      formaction="/ideas/{{ idea.slug_id }}/unarchive"
+                      value="Unarchive"
+                      />
+                {% else %}
+                  <input
+                      type="submit"
+                      class="archive-button"
+                      formaction="/ideas/{{ idea.slug_id }}/archive"
+                      value="Archive"
+                      />
+                {% endif %}
+          {% endif %}
 
         <div class="reply-button-container" style="margin-left: 15px; float:left">
             <a href class="toggle-reply-form">Add comment</a>

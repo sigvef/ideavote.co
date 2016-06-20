@@ -17,6 +17,22 @@
   margin-right: 15px;
 }
 
+.action-toolbar .archive-form {
+  display: inline;
+}
+
+.action-toolbar .archive-form .archive-button {
+  display: inline;
+  text-decoration: underline;
+  font-size: 15px;
+  color: black;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  margin-right: 15px;
+  outline: 0;
+}
+
 .idea .idea-header {
   display: flex;
   align-items: center;

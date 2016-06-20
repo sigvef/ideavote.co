@@ -82,6 +82,23 @@ class IdeaCreateView(View):
         return HttpResponse(form.errors)
 
 
+class IdeaArchiveView(View):
+    @method_decorator(login_required)
+    @method_decorator(transaction.atomic)
+    def post(self, request, slug_id=None, action=''):
+        idea = get_object_or_404(Idea, slug_id=slug_id)
+        if not request.user.moderator_sites.filter(
+                id=idea.site.settings.id).exists():
+            raise Http404
+        if action == 'archive':
+            idea.archived = True
+            idea.save()
+        elif action == 'unarchive':
+            idea.archived = False
+            idea.save()
+        return HttpResponseRedirect(idea.get_absolute_url())
+
+
 class IdeaPreviewView(View):
     def post(self, request):
         form = IdeaForm(request.POST)
