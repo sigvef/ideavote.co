@@ -24,8 +24,8 @@
 .action-toolbar .archive-form .archive-button {
   display: inline;
   text-decoration: underline;
-  font-size: 15px;
-  color: black;
+  font-size: 14px;
+  color: #222;
   padding: 0;
   background: transparent;
   border: 0;
