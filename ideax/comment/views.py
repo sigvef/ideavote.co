@@ -35,7 +35,7 @@ def post_comment(request):
         if len(parent_author) == 1:
             notify.send(request.user,
                         recipient=parent_author[0],
-                        verb='replied',
+                        verb='replied to',
                         action_object=comment,
                         description=comment.text,
                         target=target)

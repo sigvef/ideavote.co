@@ -17,6 +17,7 @@ from ideax.idea.forms import IdeaTagForm
 from ideax.idea.models import Idea
 from ideax.idea.ranking_functions import hot
 from ideax.shortcuts import get_current_site
+from notifications.signals import notify
 
 
 class IdeaEditView(View):
@@ -96,6 +97,12 @@ class IdeaArchiveView(View):
         elif action == 'unarchive':
             idea.archived = False
             idea.save()
+        else:
+            raise Http404
+        notify.send(request.user,
+                    recipient=idea.author,
+                    verb='%sd' % action,
+                    target=idea)
         return HttpResponseRedirect(idea.get_absolute_url())
 
 
