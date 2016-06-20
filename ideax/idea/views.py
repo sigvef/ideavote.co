@@ -101,6 +101,7 @@ class IdeaArchiveView(View):
             raise Http404
         notify.send(request.user,
                     recipient=idea.author,
+                    action_object=idea,
                     verb='%sd' % action,
                     target=idea)
         return HttpResponseRedirect(idea.get_absolute_url())
