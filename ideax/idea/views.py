@@ -68,6 +68,10 @@ class IdeaCreateView(View):
     @method_decorator(transaction.atomic)
     def post(self, request):
         form = IdeaForm(request.POST)
+        if request.POST.get('nosave'):
+            return render(request, 'idea/idea_edit.html', {
+                'form': form,
+            })
         if form.is_valid():
             idea = form.save(commit=False)
             idea.site = get_current_site(request)
