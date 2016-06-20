@@ -32,60 +32,64 @@
       {{ idea.get_rendered_text | safe }}
     </div>
 
-     <div class="details">
-         <div class="tags">
-             {% if IS_MODERATOR %}
-             <form
-                 action="/ideas/{{ idea.slug_id }}/tags"
-                 method="POST"
-                 >
-                 <input
-                     class="tag-editor"
-                     name="tags"
-                     value="{{ idea.tags.names | join:',' }}"
+    {% if idea.id %}
+         <div class="details">
+             <div class="tags">
+                 {% if IS_MODERATOR %}
+                 <form
+                     action="/ideas/{{ idea.slug_id }}/tags"
+                     method="POST"
                      >
-             </form>
-             {% else %}
-                 {% for tag in idea.tags.all %}
-                     <div class="tag">{{ tag }}</div>
-                 {% endfor %}
-             {% endif %}
+                     <input
+                         class="tag-editor"
+                         name="tags"
+                         value="{{ idea.tags.names | join:',' }}"
+                         >
+                 </form>
+                 {% else %}
+                     {% for tag in idea.tags.all %}
+                         <div class="tag">{{ tag }}</div>
+                     {% endfor %}
+                 {% endif %}
+             </div>
+             <span class="created-at">
+                 {{ idea.created_at | naturaltime }}
+             </span>
+             <span class="author">
+                 by {{ idea.author }}.
+             </span>
+             <span class="comment-count">
+             {{ idea.comment_count }} comment{{ idea.comment_count | pluralize }}.
+             </span>
          </div>
-         <span class="created-at">
-             {{ idea.created_at | naturaltime }}
-         </span>
-         <span class="author">
-             by {{ idea.author }}.
-         </span>
-         <span class="comment-count">
-         {{ idea.comment_count }} comment{{ idea.comment_count | pluralize }}.
-         </span>
-     </div>
+    {% endif %}
   </div>
-  <div class="action-toolbar reply-form-container">
-      {% if request.user == idea.author %}
-          <a
-              class="edit-idea-link"
-              href="/ideas/{{ idea.slug_id }}/edit"
-              >
-            Edit
-          </a>
-      {% endif %}
+  {% if idea.id %}
+      <div class="action-toolbar reply-form-container">
+          {% if request.user == idea.author %}
+              <a
+                  class="edit-idea-link"
+                  href="/ideas/{{ idea.slug_id }}/edit"
+                  >
+                Edit
+              </a>
+          {% endif %}
 
-    <div class="reply-button-container" style="margin-left: 15px; float:left">
-        <a href class="toggle-reply-form">Add comment</a>
+        <div class="reply-button-container" style="margin-left: 15px; float:left">
+            <a href class="toggle-reply-form">Add comment</a>
 
-    </div>
-    <div class="reply-form" style="clear: both">
-        <form class="pure-form" method="POST" action="/comments/">
-            <fieldset>
-            <input type="hidden" name="idea" value="{{ idea.id }}" />
-            <textarea name="text"></textarea>
-            <input type="submit" value="Save" class="pure-button pure-button-primary" />
-            </fieldset>
-        </form>
-    </div>
-  </div>
+        </div>
+        <div class="reply-form" style="clear: both">
+            <form class="pure-form" method="POST" action="/comments/">
+                <fieldset>
+                <input type="hidden" name="idea" value="{{ idea.id }}" />
+                <textarea name="text"></textarea>
+                <input type="submit" value="Save" class="pure-button pure-button-primary" />
+                </fieldset>
+            </form>
+        </div>
+      </div>
+  {% endif %}
 
   {% load mptt_tags %}
 

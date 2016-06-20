@@ -82,6 +82,19 @@ class IdeaCreateView(View):
         return HttpResponse(form.errors)
 
 
+class IdeaPreviewView(View):
+    def post(self, request):
+        form = IdeaForm(request.POST)
+        if form.is_valid():
+            idea = form.save(commit=False)
+            idea.site = get_current_site(request)
+            idea.author = request.user
+            return render(request, 'idea/idea.html', {
+                "idea": idea,
+                'comments': [],
+            })
+
+
 class IdeaView(View):
     def get(self, request, slug_id=None):
         idea = get_object_or_404(Idea, slug_id=slug_id)
